@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import "../styles/Kitchen.css";
 
@@ -12,29 +12,15 @@ const Kitchen = (props) => {
     } = props;
 
     const [workspaceIngredients, setWorkspaceIngredients] = useState([]);
+    const workspaceRef = useRef(null);
 
-    const placeIngredient = (ingredient, e) => {
-        console.log(e.clientX, e.clientY);
+    return <div id="kitchen" className="page bg3">
 
-        let newWorkspaceIngredient = {
-            "name": ingredient,
-            "posX": e.clientX - 230 - 55,
-            "posY": e.clientY - 55,
-            "index": workspaceIngredients.length
-        }
-
-        setWorkspaceIngredients(prev => [...prev, newWorkspaceIngredient]);
-
-        setSelectedIngredient(null);
-    }
-
-    return <div id="kitchen" className="page">
-
-        <div id="ingredients-div">
+        <div id="ingredients-div" className="bg4 border1">
             <ul id="ingredients-list">
                 {ingredients.map((ingredient, i) => {
                     return <li className="ingredient-li" key={i}>
-                        <button className="ingredient" onClick={() => {
+                        <button className="ingredient bg5 border1 text0" onClick={() => {
                             setSelectedIngredient(prev => prev === ingredient ? null : ingredient);
                         }}>
                             {ingredient}
@@ -44,32 +30,12 @@ const Kitchen = (props) => {
             </ul>
         </div>
 
-        <div id="workspace" onClick={(e) => {
-            if (selectedIngredient) {
-                placeIngredient(selectedIngredient, e);
-            }
-        }}>
+        <div id="workspace" ref={workspaceRef}>
             <Checkerboard 
-                width={20}
-                height={15}
-                colorA="rgb(162, 140, 111)"
-                colorB="rgb(175, 154, 126)"
+                areaRef={workspaceRef}
+                selectedIngredient={selectedIngredient}
+                setSelectedIngredient={setSelectedIngredient}
             />
-
-            <div id="workspace-ingredients-div">
-                {workspaceIngredients.map((ingredient, i) => {
-                    return <div className="ingredient" id={`ing-${ingredient.index}`} key={i} style={{
-                        "left": `${ingredient.posX}px`,
-                        "top": `${ingredient.posY}px`,
-                    }} onClick={() => {
-                        setWorkspaceIngredients(prev => prev.filter(ing => ing !== ingredient));
-                        
-                        setSelectedIngredient(prev => prev === ingredient.name ? null : ingredient.name);
-                    }}>
-                        <h1>{ingredient.name}</h1>
-                    </div>
-                })}
-            </div>
         </div>
 
     </div>

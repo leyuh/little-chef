@@ -1,15 +1,30 @@
 .checkerboard {
     position: absolute;
-    height: 100%;
-    width: 100%;
     left: 0px;
     top: 0px;
+    background-color: red;
+    gap: 0px;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
     overflow: hidden;
+    border-style: solid;
+    z-index: 0;
 }
 
 .tile {
-    height: 100%;
     border: 0px;
+    position: relative;
+    left: 0px;
+    top: 0px;
     display: inline-block;
     margin: 0px;
+    box-sizing: border-box;
+    z-index: 0;
+}
+
+.selectable:hover {
+    border: 10px solid rgb(250, 248, 246);
+    cursor: grab;
 }

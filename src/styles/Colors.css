@@ -1,0 +1,29 @@
+:root {
+    --color0: rgb(9, 9, 8);
+    --color1: rgb(131, 112, 88);
+    --color2: rgb(162, 140, 111);
+    --color3: rgb(175, 154, 126);
+    --color4: rgb(190, 173, 151); 
+    --color5: rgb(250, 248, 246);
+}
+
+.bg0 { background-color: var(--color0); }
+.bg1 { background-color: var(--color1); }
+.bg2 { background-color: var(--color2); }
+.bg3 { background-color: var(--color3); }
+.bg4 { background-color: var(--color4); }
+.bg5 { background-color: var(--color5); }
+
+.border0 { border-color: var(--color0); }
+.border1 { border-color: var(--color1); }
+.border2 { border-color: var(--color2); }
+.border3 { border-color: var(--color3); }
+.border4 { border-color: var(--color4); }
+.border5 { border-color: var(--color5); }
+
+.text0 { color: var(--color0); }
+.text1 { color: var(--color1); }
+.text2 { color: var(--color2); }
+.text3 { color: var(--color3); }
+.text4 { color: var(--color4); }
+.text5 { color: var(--color5); }
