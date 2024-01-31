@@ -73,7 +73,7 @@ const Checkerboard = (props) => {
                             console.log("!");
                             setWorkspaceIngredients(prev => [...prev].filter((ingredient, i) => {
                                 console.log(selectedIngredient, ingredient.name);
-                                return ((ingredient.tile !== `${x}-${y}`) || (ingredient.name !== selectedIngredient));
+                                return (ingredient.name !== selectedIngredient || ingredient.tile !== `${x}-${y}`);
                             }));
                         }
                     }}

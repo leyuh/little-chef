@@ -17,7 +17,7 @@ const Ingredient = (props) => {
         onClick={() => {
             console.log(name);
             if (!selectedIngredient) {
-                setSelectedIngredient(prev => prev === name ? null : name);
+                setSelectedIngredient(name);
             }
         }}
     >

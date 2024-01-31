@@ -23,10 +23,10 @@ const Kitchen = (props) => {
 
         <div id="ingredients-div" className="bg4 border1">
             <ul id="ingredients-list">
-                {ingredients.map((ingredient, i) => {
+                {ingredients.map((name, i) => {
                     return <li className="ingredient-li" key={i}>
                         <Ingredient 
-                            name={ingredient}
+                            name={name}
                             selectedIngredient={selectedIngredient}
                             setSelectedIngredient={setSelectedIngredient}
                             finite={false}
