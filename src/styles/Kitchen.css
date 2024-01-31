@@ -50,26 +50,3 @@
     top: 0px;
     left: 0px;
 }
-
-.ingredient {
-    height: 100px;
-    width: 100px;
-    position: absolute;
-    display: block;
-    border-radius: 5px;
-    border-width: 5px;
-    border-style: solid;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ingredient > h1 {
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.ingredient:hover {
-    cursor: grab;
-}

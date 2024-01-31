@@ -5,11 +5,15 @@ import { useRef, useEffect, useState } from "react";
 import { TILE_SIZE } from "../modules/configs.js";
 import { BORDER_WIDTH } from "../modules/configs.js";
 
+import Ingredient from "./Ingredient.js";
+
 const Checkerboard = (props) => {
     const {
         areaRef,
         selectedIngredient,
-        setSelectedIngredient
+        setSelectedIngredient,
+        workspaceIngredients,
+        setWorkspaceIngredients
     } = props;
 
 
@@ -27,6 +31,7 @@ const Checkerboard = (props) => {
 
     }, [])
 
+
     return <div className="checkerboard border2" style={{
         width: `${tileCountX*TILE_SIZE}px`,
         height: `${tileCountY*TILE_SIZE}px`,
@@ -39,7 +44,10 @@ const Checkerboard = (props) => {
         {[...Array(tileCountY)].map((val, x) => {
             return [...Array(tileCountX)].map((val, y) => {
                 return <div 
-                    className={`tile ${selectedIngredient ? `selectable` : ``} ${(x+y)%2 === 0 ? `bg2` : `bg3`}`} 
+                    className={`
+                        tile 
+                        ${(x+y)%2 === 0 ? `bg2` : `bg3`}
+                    `} 
                     id={`${x}-${y}`} 
                     key={`${x}-${y}`} 
                     style={{
@@ -51,7 +59,39 @@ const Checkerboard = (props) => {
                             setSelectedIngredient(null);
                         }
                     }}
-                />
+                    onMouseEnter={(e) => {
+                        if (selectedIngredient) {
+                            console.log("!");
+                            setWorkspaceIngredients(prev => [...prev, {
+                                tile: `${x}-${y}`,
+                                name: selectedIngredient
+                            }]);
+                        }
+                    }}
+                    onMouseLeave={(e) => {
+                        if (selectedIngredient) {
+                            console.log("!");
+                            setWorkspaceIngredients(prev => [...prev].filter((ingredient, i) => {
+                                console.log(selectedIngredient, ingredient.name);
+                                return ((ingredient.tile !== `${x}-${y}`) || (ingredient.name !== selectedIngredient));
+                            }));
+                        }
+                    }}
+                >
+                    {workspaceIngredients.filter((ingredient, i) => {
+                        return ingredient.tile === `${x}-${y}`;
+                    }).map((ingredient, i) => {
+                        return <Ingredient 
+                            name={ingredient.name}
+                            selectedIngredient={selectedIngredient}
+                            setSelectedIngredient={setSelectedIngredient}
+                            finite={true}
+                            workspaceIngredients={workspaceIngredients}
+                            setWorkspaceIngredients={setWorkspaceIngredients}
+                            key={i}
+                        />
+                    })}
+                </div>
             })
         })}
     </div>

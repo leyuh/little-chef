@@ -23,8 +23,3 @@
     box-sizing: border-box;
     z-index: 0;
 }
-
-.selectable:hover {
-    border: 10px solid rgb(250, 248, 246);
-    cursor: grab;
-}

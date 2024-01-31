@@ -1,0 +1,22 @@
+.ingredient {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+    border-width: 5px;
+    border-style: solid;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.ingredient > h1 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.ingredient:hover {
+    cursor: grab;
+}
