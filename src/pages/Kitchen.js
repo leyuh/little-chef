@@ -7,12 +7,21 @@ import Ingredient from "../components/Ingredient.js";
 
 const Kitchen = (props) => {
     const {
-        ingredients,
-        selectedIngredient,
-        setSelectedIngredient
     } = props;
 
+    const DEFAULT_INGREDIENTS = [
+        "water",
+        "flour",
+        "sugar",
+        "salt",
+        "milk"
+    ];
+    
+    const [selectedIngredient, setSelectedIngredient] = useState(null);
+
+
     const [workspaceIngredients, setWorkspaceIngredients] = useState([]);
+
     const workspaceRef = useRef(null);
 
     useEffect(() => {
@@ -23,13 +32,15 @@ const Kitchen = (props) => {
 
         <div id="ingredients-div" className="bg4 border1">
             <ul id="ingredients-list">
-                {ingredients.map((name, i) => {
+                {DEFAULT_INGREDIENTS.map((val, i) => { return {
+                    name: val
+                }}).map((ing, i) => {
                     return <li className="ingredient-li" key={i}>
                         <Ingredient 
-                            name={name}
+                            ingredient={ing}
+                            generator={true}
                             selectedIngredient={selectedIngredient}
                             setSelectedIngredient={setSelectedIngredient}
-                            finite={false}
                             workspaceIngredients={workspaceIngredients}
                             setWorkspaceIngredients={setWorkspaceIngredients}
                         />

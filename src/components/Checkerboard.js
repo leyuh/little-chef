@@ -55,37 +55,35 @@ const Checkerboard = (props) => {
                         width: `${TILE_SIZE}px`
                     }}
                     onClick={(e) => {
-                        if (selectedIngredient) {
+                        if (selectedIngredient !== null) {
                             setSelectedIngredient(null);
                         }
                     }}
                     onMouseEnter={(e) => {
-                        if (selectedIngredient) {
+                        if (selectedIngredient !== null) {
                             console.log("!");
-                            setWorkspaceIngredients(prev => [...prev, {
-                                tile: `${x}-${y}`,
-                                name: selectedIngredient
-                            }]);
-                        }
-                    }}
-                    onMouseLeave={(e) => {
-                        if (selectedIngredient) {
-                            console.log("!");
-                            setWorkspaceIngredients(prev => [...prev].filter((ingredient, i) => {
-                                console.log(selectedIngredient, ingredient.name);
-                                return (ingredient.name !== selectedIngredient || ingredient.tile !== `${x}-${y}`);
+                            setWorkspaceIngredients(prev => [...prev].map((ingredient, i) => {
+                                if (ingredient.key === selectedIngredient) {
+                                    return {
+                                        name: ingredient.name,
+                                        tile: `${x}-${y}`,
+                                        key: selectedIngredient
+                                    }
+                                }
+                                return ingredient;
                             }));
                         }
                     }}
+                    
                 >
                     {workspaceIngredients.filter((ingredient, i) => {
                         return ingredient.tile === `${x}-${y}`;
                     }).map((ingredient, i) => {
                         return <Ingredient 
-                            name={ingredient.name}
+                            ingredient={ingredient}
+                            generator={false}
                             selectedIngredient={selectedIngredient}
                             setSelectedIngredient={setSelectedIngredient}
-                            finite={true}
                             workspaceIngredients={workspaceIngredients}
                             setWorkspaceIngredients={setWorkspaceIngredients}
                             key={i}

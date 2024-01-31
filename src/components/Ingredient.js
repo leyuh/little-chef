@@ -4,10 +4,10 @@ import { useEffect } from "react";
 
 const Ingredient = (props) => {
     const {
-        name,
+        ingredient,
+        generator,
         selectedIngredient,
         setSelectedIngredient,
-        finite,
         workspaceIngredients,
         setWorkspaceIngredients
     } = props;
@@ -15,13 +15,24 @@ const Ingredient = (props) => {
     return <div 
         className="ingredient bg5 border1 text0" 
         onClick={() => {
-            console.log(name);
-            if (!selectedIngredient) {
-                setSelectedIngredient(name);
+            if (selectedIngredient === null) {
+                console.log(ingredient.key);
+
+                let key = ingredient.key;
+
+                if (generator) {
+                    key = workspaceIngredients.length;
+                    setWorkspaceIngredients(prev => [...prev, {
+                        name: ingredient.name,
+                        tile: null,
+                        key: key
+                    }]);
+                }
+                setSelectedIngredient(key);
             }
         }}
     >
-        <h1 className="text0">{name}</h1>
+        <h1 className="text0">{ingredient.name}</h1>
     </div>
 }
 
