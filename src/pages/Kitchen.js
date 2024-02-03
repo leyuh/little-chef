@@ -22,6 +22,7 @@ const Kitchen = (props) => {
 
     const [workspaceIngredients, setWorkspaceIngredients] = useState([]);
     const [workspaceAppliances, setWorkspaceAppliances] = useState(DEFAULT_APPLIANCES);
+    const [currKey, setCurrKey] = useState(DEFAULT_APPLIANCES.length);
 
     const workspaceRef = useRef(null);
 
@@ -31,11 +32,38 @@ const Kitchen = (props) => {
         })
         let sameTileAppliance = workspaceAppliances.find(app => app.tile === selectedWorkspaceItem.tile);
 
-        console.log(sameTileIngredients);
-
         let includesAll = (arr, values) => values.every(val => arr.includes(val));
-        console.log(sameTileAppliance);
-        let recipeName = Object.keys(RECIPES).find(recipeName => includesAll(sameTileIngredients.map(ing => ing.name), RECIPES[recipeName].ingredients) && (RECIPES[recipeName].appliance === sameTileAppliance?.name));
+        let sameApplianceRecipeNames = Object.keys(RECIPES).filter(recipeName => RECIPES[recipeName].appliance === sameTileAppliance?.name);
+
+        let recipeNames = [];
+        let ingredientsLists = [];
+        sameApplianceRecipeNames?.map((recName, i) => {
+            let recipe = RECIPES[recName];
+
+            for (let i = 0; i < recipe.ingredientCombos.length; i++) {
+                if (includesAll(sameTileIngredients.map(ing => ing.name), recipe.ingredientCombos[i])) {
+                    recipeNames.push(recName);
+                    ingredientsLists.push(recipe.ingredientCombos[i]);
+                    break;
+                }
+            }
+        }) 
+        
+        // favor most complicated recipe
+        let mostComplicatedIngredients;
+        let mostComplicatedLength;
+        let mostComplicatedIndex;
+        for (let i = 0; i < ingredientsLists.length; i++) {
+            if (!mostComplicatedIngredients || ingredientsLists[i].length > mostComplicatedLength) {
+                mostComplicatedIngredients = ingredientsLists[i];
+                mostComplicatedLength = ingredientsLists[i].length;
+                mostComplicatedIndex = i;
+            }
+        }
+
+        let ingredientsList = mostComplicatedIngredients;
+        let recipeName = recipeNames[mostComplicatedIndex];
+
 
         if (recipeName) {
             console.log("recipe found");
@@ -46,14 +74,36 @@ const Kitchen = (props) => {
             }
 
             setWorkspaceIngredients(prev => {
-                let newIngs = [...prev].filter((ing, i) => sameTileIngredients.indexOf(ing) === -1);
+                let newIngs = [];
+
+                let ingsNeeded = [...ingredientsList];
+                for (let i = 0; i < prev.length; i++) {
+                    let ing = prev[i];
+                    if (sameTileIngredients.indexOf(ing) === -1) {
+                        // ingredient was not on tile
+                        newIngs.push(ing);
+                    } else {
+                        console.log(ingsNeeded);
+                        // if on same tile, only push if not in needed ings list
+                        if (ingsNeeded.indexOf(ing.name) === -1) {
+                            newIngs.push(ing);
+                        } else {
+                            console.log(ingsNeeded);
+                            ingsNeeded.splice(ingsNeeded.indexOf(ing.name), 1);
+                            console.log(ingsNeeded);
+                        }
+                    }
+                }
+
                 newIngs.push({
                     name: recipeName,
                     tile: selectedWorkspaceItem.tile,
-                    key: newIngs.length + workspaceAppliances.length
+                    key: currKey
                 });
                 return newIngs;
             });
+
+            setCurrKey(prev => prev + 1);
             
         }
     }
@@ -68,20 +118,21 @@ const Kitchen = (props) => {
     }
 
     const onItemClick = (item, type, isGenerator = false) => {
-        console.log("click", selectedItem);
+
         if (selectedItem === null) {
             console.log(item.key);
 
             let key = item.key;
 
             if (type === "ingredient" && isGenerator) {
-                key = workspaceIngredients.length + workspaceAppliances.length;
+                key = currKey;
                 console.log(key);
                 setWorkspaceIngredients(prev => [...prev, {
                     name: item.name,
                     tile: null,
                     key: key
                 }]);
+                setCurrKey(prev => prev + 1);
             }
 
             setSelectedItem({

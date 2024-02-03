@@ -65,9 +65,9 @@ const Checkerboard = (props) => {
                     }}
                     onMouseEnter={(e) => {
                         if (selectedItem !== null) {
-                            console.log("!");
+                            
                             if (selectedItem.type === "ingredient") {
-                                console.log(selectedItem, workspaceIngredients);
+                                
                                 setWorkspaceIngredients(prev => [...prev].map((ing, i) => {
                                     if (ing.key === selectedItem.key) {
                                         return {

@@ -3,7 +3,11 @@ export const DEFAULT_INGREDIENTS = [
     "flour",
     "sugar",
     "salt",
-    "milk"
+    "milk",
+    "oil",
+    "strawberry",
+    "peanut",
+    "egg"
 ];
 
 export const DEFAULT_APPLIANCES = [

@@ -29,7 +29,7 @@
     width: 100px;
     display: block;
     position: relative;
-    margin: 40px -40px 0px 20px;
+    margin: 40px -40px 40px 20px;
     margin-left: -40px;
     left: calc(50% - 30px);
 }
@@ -68,6 +68,7 @@
 .grid-item > h1 {
     font-size: 18px;
     font-weight: 400;
+    text-align: center;
 }
 
 .grid-item:hover {
