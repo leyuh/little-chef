@@ -5,6 +5,8 @@
     --color3: rgb(175, 154, 126);
     --color4: rgb(190, 173, 151); 
     --color5: rgb(250, 248, 246);
+    --color6: rgb(105, 91, 75);
+    --color7: rgb(78, 67, 53);
 }
 
 .bg0 { background-color: var(--color0); }
@@ -13,6 +15,8 @@
 .bg3 { background-color: var(--color3); }
 .bg4 { background-color: var(--color4); }
 .bg5 { background-color: var(--color5); }
+.bg6 { background-color: var(--color6); }
+.bg7 { background-color: var(--color7); }
 
 .border0 { border-color: var(--color0); }
 .border1 { border-color: var(--color1); }
@@ -20,6 +24,8 @@
 .border3 { border-color: var(--color3); }
 .border4 { border-color: var(--color4); }
 .border5 { border-color: var(--color5); }
+.border6 { border-color: var(--color6); }
+.border7 { border-color: var(--color7); }
 
 .text0 { color: var(--color0); }
 .text1 { color: var(--color1); }
@@ -27,3 +33,5 @@
 .text3 { color: var(--color3); }
 .text4 { color: var(--color4); }
 .text5 { color: var(--color5); }
+.text6 { color: var(--color6); }
+.text7 { color: var(--color7); }

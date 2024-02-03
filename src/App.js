@@ -37,7 +37,7 @@ function App() {
       <Sound 
         url={backgroundMusic}
         playStatus={playMusic ? Sound.status.PLAYING : Sound.status.STOPPED}
-        volume={10}
+        volume={20}
         loop={true}
       />
     </div>

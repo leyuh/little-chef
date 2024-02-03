@@ -1,0 +1,28 @@
+#info-div {
+    height: 320px;
+    width: 300px;
+    left: calc(50% - 165px);
+    top: calc(50% - 220px);
+    position: absolute;
+    text-align: center;
+    padding: 10px;
+    font-weight: 400;
+
+    animation-name: divAppear;
+    animation-duration: 1s;
+}
+
+#info-div > p {
+   font-size: 16px;
+}
+
+#info-div > h5 {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+@keyframes divAppear {
+    from {top: -350px;}
+    to {top: calc(50% - 220px);}
+}
+

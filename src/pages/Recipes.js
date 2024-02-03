@@ -4,7 +4,7 @@ const Recipes = (props) => {
     } = props;
 
 
-    return <div id="recipes" className="page bg3">
+    return <div id="recipes" className="page bg6">
 
     </div>
 }

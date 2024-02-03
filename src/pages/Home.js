@@ -1,4 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import Logo from "../images/logo.png";
+
+import Info from "../components/Info.js";
 
 import "../styles/Home.css";
 
@@ -9,12 +14,22 @@ const Home = (props) => {
     } = props;
 
     const navigate = useNavigate();
+    const [showInfoDiv, setShowInfoDiv] = useState(false);
 
     return <div id="home" className="page bg3">
-        <button id="play-btn" className="bg5 border1 text0" onClick={() => {
+        <h1 id="title" className="text5">Little Chef</h1>
+        <img src={Logo} id="home-logo" />
+        <button id="play-btn" className="text5" onClick={() => {
             setPlayMusic(true);
             navigate("/kitchen");
         }}>play</button>
+        <button id="info-btn" className="text5" onClick={() => {
+            setShowInfoDiv(true);
+        }}>info</button>
+
+        {showInfoDiv && <Info
+            setShowInfoDiv={setShowInfoDiv}
+        />}
     </div>
 }
 
