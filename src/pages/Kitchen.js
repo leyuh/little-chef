@@ -36,14 +36,14 @@ const Kitchen = (props) => {
         let sameTileAppliance = workspaceAppliances.find(app => app.tile === selectedWorkspaceItem.tile);
 
         let includesAll = (arr, values) => values.every(val => arr.includes(val));
-        let sameApplianceRecipeNames = Object.keys(RECIPES).filter(recipeName => RECIPES[recipeName].appliance === sameTileAppliance?.name);
-
+        let sameApplianceRecipeNames = Object.keys(RECIPES).filter(recipeName => RECIPES[recipeName].appliance.indexOf(sameTileAppliance?.name) !== -1);
         let recipeNames = [];
         let ingredientsLists = [];
         sameApplianceRecipeNames?.map((recName, i) => {
             let recipe = RECIPES[recName];
 
             for (let i = 0; i < recipe.ingredientCombos.length; i++) {
+                console.log(recipe);
                 if (includesAll(sameTileIngredients.map(ing => ing.name), recipe.ingredientCombos[i])) {
                     recipeNames.push(recName);
                     ingredientsLists.push(recipe.ingredientCombos[i]);

@@ -7,7 +7,7 @@ const Appliance = (props) => {
     } = props;
 
     return <div 
-        id={appliance.name} 
+        id={appliance.name.split(" ").join("-")} 
         className={`grid-item appliance border0 text0`} 
         onClick={() => onItemClick(appliance, "appliance")}
     >

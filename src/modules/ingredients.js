@@ -3,58 +3,94 @@ const INGREDIENTS = {
     // LIQUIDS
     "water": {
         "icon": "",
-        "category": "liquids"
-    },
-    "oil": {
-        "icon": "",
-        "category": "liquid"
+        "category": ["liquids"]
     },
 
     // DAIRY
     "milk": {
         "icon": "",
-        "category": "dairy"
+        "category": ["dairy", "liquids"]
     },
 
     // BAKING
     "sugar": {
         "icon": "",
-        "category": "baking"
+        "category": ["baking"]
     },
     "salt": {
         "icon": "",
-        "category": "baking"
+        "category": ["baking"]
     },
     "flour": {
         "icon": "",
-        "category": "baking"
+        "category": ["baking"]
     },
 
 
     // PROTEIN
     "egg": {
         "icon": "",
-        "category": "protein"
+        "category": ["protein"]
     },
 
 
     // FRUIT
     "strawberry": {
         "icon": "",
-        "category": "fruit"
+        "category": ["fruit"]
     },
     "lemon": {
         "icon": "",
-        "category": "fruit"
+        "category": ["fruit"]
+    },
+    "tomato": {
+        "icon": "",
+        "category": ["fruit"]
+    },
+    "olive": {
+        "icon": "",
+        "category": ["fruit"]
     },
 
+    // VEGETABLE
+    "potato": {
+        "icon": "",
+        "category": ["vegetable"]
+    },
+    "lettuce": {
+        "icon": "",
+        "category": ["vegetable"]
+    },
+    "onion": {
+        "icon": "",
+        "category": ["vegetable"]
+    },
+    "garlic": {
+        "icon": "",
+        "category": ["vegetable"]
+    },
 
     // NUT
     "peanut": {
         "icon": "",
-        "category": "nut"
-    }
+        "category": ["nut"]
+    },
 
+    // BEANS
+    "coffee beans": {
+        "icon": "",
+        "category": ["beans"]
+    },
+    "cocoa beans": {
+        "icon": "",
+        "category": ["beans"]
+    },
+
+    // SEEDS
+    "mustard seed": {
+        "icon": "",
+        "category": ["seeds"]
+    },
 
 }
 

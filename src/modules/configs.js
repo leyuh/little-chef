@@ -1,15 +1,5 @@
-export const DEFAULT_INGREDIENTS = [
-    "water",
-    "flour",
-    "sugar",
-    "salt",
-    "milk",
-    "oil",
-    "strawberry",
-    "lemon",
-    "peanut",
-    "egg"
-];
+import INGREDIENTS from "./ingredients.js";
+export const DEFAULT_INGREDIENTS = Object.keys(INGREDIENTS);
 
 export const DEFAULT_APPLIANCES = [
     {
@@ -21,6 +11,11 @@ export const DEFAULT_APPLIANCES = [
         name: "fridge",
         tile: `${1}-${0}`,
         key: 1
+    },
+    {
+        name: "fermenter",
+        tile: `${3}-${0}`,
+        key: 3
     },
     {
         name: "trash",
