@@ -65,6 +65,12 @@ const RECIPES = {
         "icon": "",
         "category": "grain"
     },
+    "toast": {
+        "appliance": "oven",
+        "ingredientCombos": [["bread"]],
+        "icon": "",
+        "category": "grain"
+    },
     "tortilla": {
         "appliance": "oven",
         "ingredientCombos": [["flour", "water", "salt"]],
@@ -73,15 +79,35 @@ const RECIPES = {
     },
 
 
+    // LIQUIDS
+    "simple syrup": {
+        "appliance": "oven",
+        "ingredientCombos": [["water", "sugar"]],
+        "icon": "",
+        "category": "liquids"
+    },
+    "lemonade": {
+        "appliance": "fridge",
+        "ingredientCombos": [["simple syrup", "lemon"]],
+        "icon": "",
+        "category": "liquids"
+    },
+
     // CONDIMENTS
     "strawberry jam": {
         "appliance": "oven",
         "ingredientCombos": [["strawberry", "sugar"]],
         "icon": "",
         "category": "condiment"
-    }
+    },
+    "peanut butter": {
+        "appliance": undefined,
+        "ingredientCombos": [["peanut", "salt"]],
+        "icon": "",
+        "category": "condiment"
+    },
 
-    
+
 
 }
 

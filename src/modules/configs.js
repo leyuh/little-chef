@@ -6,6 +6,7 @@ export const DEFAULT_INGREDIENTS = [
     "milk",
     "oil",
     "strawberry",
+    "lemon",
     "peanut",
     "egg"
 ];
