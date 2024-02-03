@@ -1,0 +1,16 @@
+#home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#play-btn {
+    display: block;
+    height: 60px;
+    width: 144px;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 18px;
+    border-width: 5px;
+    border-style: solid;
+}
