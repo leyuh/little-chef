@@ -69,25 +69,25 @@ const RECIPES = {
         "appliance": ["oven"],
         "ingredientCombos": [["flour", "water", "yeast"]],
         "icon": "",
-        "category": ["grain"]
+        "category": ["grains"]
     },
     "toast": {
         "appliance": ["oven"],
         "ingredientCombos": [["bread"]],
         "icon": "",
-        "category": ["grain"]
+        "category": ["grains"]
     },
     "tortilla": {
         "appliance": ["oven"],
         "ingredientCombos": [["flour", "water", "salt"]],
         "icon": "",
-        "category": ["grain"]
+        "category": ["grains"]
     },
     "pasta": {
         "appliance": ["oven"],
         "ingredientCombos": [["flour", "egg", "salt", "oil"]],
         "icon": "",
-        "category": ["grain"]
+        "category": ["grains"]
     },
 
     // LIQUIDS
@@ -139,19 +139,19 @@ const RECIPES = {
         "appliance": ["fermenter"],
         "ingredientCombos": [["sugar"]],
         "icon": "",
-        "category": ["ferment"]
+        "category": ["ferments"]
     },
     "yeast": {
         "appliance": ["fermenter"],
         "ingredientCombos": [["flour", "water"]],
         "icon": "",
-        "category": ["ferment"]
+        "category": ["ferments"]
     },
     "vinegar": {
         "appliance": ["fermenter"],
         "ingredientCombos": [["yeast", "sugar"]],
         "icon": "",
-        "category": ["liquids", "ferment"]
+        "category": ["liquids", "ferments"]
     },
 
     // CONDIMENTS
@@ -159,31 +159,31 @@ const RECIPES = {
         "appliance": ["oven"],
         "ingredientCombos": [["strawberry", "sugar"]],
         "icon": "",
-        "category": ["condiment"]
+        "category": ["condiments"]
     },
     "peanut butter": {
         "appliance": [undefined],
         "ingredientCombos": [["peanut", "salt"]],
         "icon": "",
-        "category": ["condiment"]
+        "category": ["condiments"]
     },
     "mayonnaise": {
         "appliance": [undefined],
         "ingredientCombos": [["egg", "oil", "lemon"], ["egg", "oil", "vinegar"]],
         "icon": "",
-        "category": ["condiment"]
+        "category": ["condiments"]
     },
     "mustard": {
         "appliance": [undefined],
         "ingredientCombos": [["mustard seed", "vinegar"]],
         "icon": "",
-        "category": ["condiment"]
+        "category": ["condiments"]
     },
     "ranch": {
         "appliance": [undefined],
         "ingredientCombos": [["mayonnaise", "lemon"], ["sour cream", "lemon"]],
         "icon": "",
-        "category": ["condiment"]
+        "category": ["condiments"]
     },
 
 

@@ -30,50 +30,50 @@ const INGREDIENTS = {
     // PROTEIN
     "egg": {
         "icon": "",
-        "category": ["protein"]
+        "category": ["proteins"]
     },
 
 
     // FRUIT
     "strawberry": {
         "icon": "",
-        "category": ["fruit"]
+        "category": ["fruits"]
     },
     "lemon": {
         "icon": "",
-        "category": ["fruit"]
+        "category": ["fruits"]
     },
     "tomato": {
         "icon": "",
-        "category": ["fruit"]
+        "category": ["fruits"]
     },
     "olive": {
         "icon": "",
-        "category": ["fruit"]
+        "category": ["fruits"]
     },
 
     // VEGETABLE
     "potato": {
         "icon": "",
-        "category": ["vegetable"]
+        "category": ["vegetables"]
     },
     "lettuce": {
         "icon": "",
-        "category": ["vegetable"]
+        "category": ["vegetables"]
     },
     "onion": {
         "icon": "",
-        "category": ["vegetable"]
+        "category": ["vegetables"]
     },
     "garlic": {
         "icon": "",
-        "category": ["vegetable"]
+        "category": ["vegetables"]
     },
 
     // NUT
     "peanut": {
         "icon": "",
-        "category": ["nut"]
+        "category": ["nuts"]
     },
 
     // BEANS

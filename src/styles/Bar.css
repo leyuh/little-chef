@@ -1,0 +1,28 @@
+.bar {
+    z-index: 10;
+    position: relative;
+    width: calc(100% - 10px);
+    height: 25px;
+    left: 5px;
+    top: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.bar > input {
+    height: 100%;
+    width: calc(100% - 5px);
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.bar > select {
+    height: 100%;
+    width: calc(100% - 5px);
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    font-family: inherit;
+    font-size: 16px;
+}

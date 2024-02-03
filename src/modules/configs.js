@@ -1,4 +1,5 @@
 import INGREDIENTS from "./ingredients.js";
+
 export const DEFAULT_INGREDIENTS = Object.keys(INGREDIENTS);
 
 export const DEFAULT_APPLIANCES = [
@@ -23,6 +24,21 @@ export const DEFAULT_APPLIANCES = [
         key: 2
     }
 ];
+
+export const CATEGORIES = [
+    "baking",
+    "ferments",
+    "liquids",
+    "condiments",
+    "dairy",
+    "protein",
+    "fruits",
+    "vegetables",
+    "beans",
+    "nuts",
+    "seeds",
+    "grains"
+]
 
 // CHECKERBOARD
 export const TILE_SIZE = 100;

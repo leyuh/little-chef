@@ -4,6 +4,8 @@ import "../styles/Kitchen.css";
 
 import Checkerboard from "../components/Checkerboard.js";
 import Ingredient from "../components/Ingredient.js";
+import SearchBar from "../components/SearchBar.js";
+import FilterBar from "../components/FilterBar.js";
 
 import INGREDIENTS from "../modules/ingredients.js";
 import RECIPES from "../modules/recipes.js";
@@ -19,6 +21,11 @@ const Kitchen = (props) => {
 
 
     const [unlockedIngredients, setUnlockedIngredients] = useState(DEFAULT_INGREDIENTS);
+
+    const [searchedUnlockedIngredients, setSearchedUnlockedIngredients] = useState(unlockedIngredients);
+    const [filteredUnlockedIngredients, setFilteredUnlockedIngredients] = useState(unlockedIngredients);
+
+    const [viewIngredients, setViewIngredients] = useState(unlockedIngredients);
     
     const [selectedItem, setSelectedItem] = useState(null);
 
@@ -157,14 +164,33 @@ const Kitchen = (props) => {
     }
 
     useEffect(() => {
-        console.log(workspaceIngredients);
-    }, [workspaceIngredients])
+        setViewIngredients(filteredUnlockedIngredients.filter(ing => searchedUnlockedIngredients.indexOf(ing) !== -1).sort((a, b) => {
+            if (a < b) {
+                return -1;
+            } else if (a > b) {
+                return 1;
+            }
+            
+            return 0;
+        }));
+    }, [filteredUnlockedIngredients, searchedUnlockedIngredients])
 
     return <div id="kitchen" className="page bg3">
 
         <div id="ingredients-div" className="bg4 border1">
+            <SearchBar 
+                items={unlockedIngredients}
+                filteredItems={searchedUnlockedIngredients}
+                setFilteredItems={setSearchedUnlockedIngredients}
+            />
+            <FilterBar 
+                items={unlockedIngredients}
+                filteredItems={filteredUnlockedIngredients}
+                setFilteredItems={setFilteredUnlockedIngredients}
+            />
+
             <ul id="ingredients-list">
-                {unlockedIngredients.map((val, i) => { return {
+                {viewIngredients.map((val, i) => { return {
                     name: val
                 }}).map((ing, i) => {
                     return <li className="ingredient-li" key={i}>
