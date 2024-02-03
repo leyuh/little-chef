@@ -12,6 +12,8 @@ import { DEFAULT_INGREDIENTS, DEFAULT_APPLIANCES } from "../modules/configs.js";
 
 const Kitchen = (props) => {
     const {
+        playMusic,
+        setPlayMusic
     } = props;
 
 
@@ -118,7 +120,7 @@ const Kitchen = (props) => {
     }
 
     const onItemClick = (item, type, isGenerator = false) => {
-
+        
         if (selectedItem === null) {
             console.log(item.key);
 
