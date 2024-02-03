@@ -9,3 +9,11 @@
 #trash {
     background-color: rgb(79, 88, 97);
 }
+
+.appliance {
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}

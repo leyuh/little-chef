@@ -14,7 +14,7 @@ const Home = (props) => {
         <button id="play-btn" className="bg5 border1 text0" onClick={() => {
             setPlayMusic(true);
             navigate("/kitchen");
-        }}>Play</button>
+        }}>play</button>
     </div>
 }
 

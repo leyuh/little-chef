@@ -31,6 +31,6 @@ export const DEFAULT_APPLIANCES = [
 
 // CHECKERBOARD
 export const TILE_SIZE = 100;
-export const BORDER_WIDTH = 10;
+export const BORDER_WIDTH = 15;
 
 

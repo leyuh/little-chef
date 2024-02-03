@@ -1,7 +1,7 @@
 
 #ingredients-div {
     height: calc(100% - 30px);
-    width: 200px;
+    width: 180px;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -52,25 +52,30 @@
 }
 
 .grid-item {
-    height: 100%;
-    width: 100%;
-    position: relative;
+    height: calc(100% - 10px);
+    width: calc(100% - 10px);
+    position: absolute;
     display: flex;
     border-radius: 5px;
     border-width: 5px;
+    left: 5px;
+    top: 5px;
     border-style: solid;
     overflow: hidden;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .grid-item > h1 {
     font-size: 18px;
     font-weight: 400;
+    max-width: 90%;
     text-align: center;
+    overflow: hidden;
 }
 
 .grid-item:hover {
-    cursor: grab;
+    cursor: url("../images/grab-cursor.png"), auto !important;
 }

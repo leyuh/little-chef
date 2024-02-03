@@ -6,3 +6,10 @@
     top: 0px;
 }
 
+body {
+    cursor: url("../images/default-cursor.png"), auto !important;
+}
+
+button:hover {
+    cursor: url("../images/grab-cursor.png"), auto !important;
+}
