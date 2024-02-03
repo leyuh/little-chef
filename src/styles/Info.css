@@ -1,8 +1,8 @@
 #info-div {
     height: 320px;
     width: 300px;
-    left: calc(50% - 165px);
-    top: calc(50% - 220px);
+    left: calc(50% - 170px);
+    top: calc(50% - 230px);
     position: absolute;
     text-align: center;
     padding: 10px;
@@ -23,6 +23,6 @@
 
 @keyframes divAppear {
     from {top: -350px;}
-    to {top: calc(50% - 220px);}
+    to {top: calc(50% - 230px);}
 }
 

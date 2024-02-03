@@ -5,7 +5,7 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    top: calc(50% - 200px);
+    top: calc(50% - 250px);
     font-family: inherit;
     font-size: 22px;
     font-weight: bold;
@@ -17,23 +17,30 @@
     object-fit: contain;
     display: block;
     left: calc(50% - 60px);
-    top: calc(50% - 215px);
+    top: calc(50% - 270px);
     position: relative;
 }
 
-#home > button {
+#home-btns-div {
+    height: 80px;
+    width: 120px;
+    position: relative;
+    top: calc(50% - 220px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#home-btns-div > button {
     display: block;
     height: 40px;
-    width: 120px;
+    width: 100%;
     border-radius: 5px;
     font-family: inherit;
     font-size: 18px;
     border-width: 5px;
-    margin-left: auto;
-    margin-right: auto;
     border: 0px;
     background-color: rgb(0, 0, 0, 0);
-    top: calc(50% - 170px);
     position: relative;
     font-weight: bold;
+    top: 0px;
 }
