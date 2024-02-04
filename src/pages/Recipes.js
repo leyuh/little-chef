@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useStickyState from "../hooks/useStickyState.js";
 
 import "../styles/Recipes.css";
 

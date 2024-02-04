@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useStickyState from "./hooks/useStickyState.js";
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 
 import Sound from "react-sound";
@@ -17,7 +18,7 @@ import { DEFAULT_INGREDIENTS, TEST_RECIPES, CATEGORIES } from "./modules/configs
 function App() {
 
   const [playMusic, setPlayMusic] = useState(false);
-  const [unlockedIngredients, setUnlockedIngredients] = useState([...DEFAULT_INGREDIENTS, ...TEST_RECIPES]);
+  const [unlockedIngredients, setUnlockedIngredients] = useStickyState([...DEFAULT_INGREDIENTS, ...TEST_RECIPES], "unlockedIngredients");
 
   const getCategoryQuantities = (items) => {
     let quantities = {};

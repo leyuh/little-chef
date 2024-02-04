@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import useStickyState from "../hooks/useStickyState.js";
 
 import "../styles/Kitchen.css";
 
@@ -34,9 +35,9 @@ const Kitchen = (props) => {
     const [selectedItem, setSelectedItem] = useState(null);
 
 
-    const [workspaceIngredients, setWorkspaceIngredients] = useState([]);
-    const [workspaceAppliances, setWorkspaceAppliances] = useState(DEFAULT_APPLIANCES);
-    const [currKey, setCurrKey] = useState(DEFAULT_APPLIANCES.length);
+    const [workspaceIngredients, setWorkspaceIngredients] = useStickyState([], "workspaceIngredients");
+    const [workspaceAppliances, setWorkspaceAppliances] = useStickyState(DEFAULT_APPLIANCES, "workspaceAppliances");
+    const [currKey, setCurrKey] = useStickyState(DEFAULT_APPLIANCES.length, "currKey");
 
     const [categoryQuantities, setCategoryQuantities] = useState(getCategoryQuantities({...INGREDIENTS, ...RECIPES}));
     const [selectedCategory, setSelectedCategory] = useState(null);
