@@ -27,17 +27,22 @@ export const DEFAULT_APPLIANCES = [
 
 export const CATEGORIES = [
     "baking",
+    "spices",
+    "sweets",
     "ferments",
     "liquids",
     "condiments",
     "dairy",
-    "protein",
+    "proteins",
     "fruits",
     "vegetables",
     "beans",
     "nuts",
     "seeds",
-    "grains"
+    "grains",
+    "pastries",
+    "meals",
+    "sides"
 ]
 
 // CHECKERBOARD

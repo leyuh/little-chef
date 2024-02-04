@@ -7,7 +7,18 @@
     position: relative;
     top: calc(50% - 250px);
     font-family: inherit;
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: bold;
+}
+#version {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: calc(50% - 270px);
+    font-family: inherit;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -17,7 +28,7 @@
     object-fit: contain;
     display: block;
     left: calc(50% - 60px);
-    top: calc(50% - 270px);
+    top: calc(50% - 290px);
     position: relative;
 }
 
@@ -25,7 +36,7 @@
     height: 80px;
     width: 120px;
     position: relative;
-    top: calc(50% - 220px);
+    top: calc(50% - 240px);
     margin-left: auto;
     margin-right: auto;
 }

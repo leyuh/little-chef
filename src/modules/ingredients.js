@@ -32,9 +32,22 @@ const INGREDIENTS = {
         "icon": "",
         "category": ["proteins"]
     },
+    "chicken": {
+        "icon": "",
+        "category": ["proteins"]
+    },
+    "ground beef": {
+        "icon": "",
+        "category": ["proteins"]
+    },
+
 
 
     // FRUIT
+    "apple": {
+        "icon": "",
+        "category": ["fruits"]
+    },
     "strawberry": {
         "icon": "",
         "category": ["fruits"]
@@ -85,11 +98,25 @@ const INGREDIENTS = {
         "icon": "",
         "category": ["beans"]
     },
+    "vanilla beans": {
+        "icon": "",
+        "category": ["beans"]
+    },
 
     // SEEDS
     "mustard seed": {
         "icon": "",
         "category": ["seeds"]
+    },
+
+    // SPICES
+    "cinnamon": {
+        "icon": "",
+        "category": ["spices"]
+    },
+    "black pepper": {
+        "icon": "",
+        "category": ["spices"]
     },
 
 }

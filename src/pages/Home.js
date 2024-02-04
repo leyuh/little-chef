@@ -18,6 +18,8 @@ const Home = (props) => {
 
     return <div id="home" className="page bg3">
         <h1 id="title" className="text5">Little Chef</h1>
+        <h1 id="version" className="text1">alpha</h1>
+
         <img src={Logo} id="home-logo" />
 
         <div id="home-btns-div" className="bg2 panel border2">
