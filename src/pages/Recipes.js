@@ -10,7 +10,8 @@ import FilterBar from "../components/FilterBar.js";
 const Recipes = (props) => {
     const {
         unlockedIngredients,
-        setUnlockedIngredients
+        setUnlockedIngredients,
+        getCategoryQuantities
     } = props;
 
 
@@ -21,6 +22,9 @@ const Recipes = (props) => {
     const [viewRecipes, setViewRecipes] = useState(items);
 
     const [recipeInfo, setRecipeInfo] = useState(null);
+
+    const [categoryQuantities, setCategoryQuantities] = useState(getCategoryQuantities(RECIPES));
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
 
@@ -51,6 +55,7 @@ const Recipes = (props) => {
                     items={items}
                     filteredItems={filteredRecipes}
                     setFilteredItems={setFilteredRecipes}
+                    setSelectedCategory={setSelectedCategory}
                 />
             </div>
 
@@ -72,6 +77,13 @@ const Recipes = (props) => {
                         </div>
                 })}
             </div>
+
+            <h1 id="recipes-quantity-label" className={`text1 ${recipeInfo ? "half" : ""}`}>
+                {selectedCategory ? 
+                    (unlockedIngredients.filter(ing => Object.keys(RECIPES).indexOf(ing) !== -1).filter(ing => RECIPES[ing].category.indexOf(selectedCategory) !== -1)?.length) 
+                : 
+                    unlockedIngredients.filter(ing => Object.keys(RECIPES).indexOf(ing) !== -1).length}/{selectedCategory ? categoryQuantities[selectedCategory] : Object.keys(RECIPES).length}
+            </h1>
 
             {recipeInfo && <div id="recipe-info" className="half bg2 border1 panel">
                 <button id="recipe-info-close-btn" className="bg5 border1 text1" onClick={() => setRecipeInfo(null)}>&lt;</button>

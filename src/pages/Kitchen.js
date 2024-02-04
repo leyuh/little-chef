@@ -38,8 +38,12 @@ const Kitchen = (props) => {
     const [workspaceAppliances, setWorkspaceAppliances] = useState(DEFAULT_APPLIANCES);
     const [currKey, setCurrKey] = useState(DEFAULT_APPLIANCES.length);
 
-    const [categoryQuantities, setCategoryQuantities] = useState(getCategoryQuantities([...INGREDIENTS, ...RECIPES]));
-    const [selectedCategoryQuantity, setSelectedCategoryQuantity] = useState(Object.values(categoryQuantities).reduce((a, b) => a + b, 0));
+    const [categoryQuantities, setCategoryQuantities] = useState(getCategoryQuantities({...INGREDIENTS, ...RECIPES}));
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
+    useEffect(() => {
+        console.log(categoryQuantities);
+    }, [categoryQuantities])
 
     const workspaceRef = useRef(null);
 
@@ -194,8 +198,7 @@ const Kitchen = (props) => {
                 items={unlockedIngredients}
                 filteredItems={filteredUnlockedIngredients}
                 setFilteredItems={setFilteredUnlockedIngredients}
-                categoryQuantities={categoryQuantities}
-                setSelectedCategoryQuantity={setSelectedCategoryQuantity}
+                setSelectedCategory={setSelectedCategory}
             />
 
             <ul id="ingredients-list">
@@ -216,8 +219,11 @@ const Kitchen = (props) => {
                 })}
             </ul>
 
-            <h1 id="ingredients-list-quantity-label">
-                {selectedCategoryQuantity}
+            <h1 id="ingredients-list-quantity-label" className="text1">
+                {selectedCategory ? 
+                    (unlockedIngredients.filter(ing => ({...INGREDIENTS, ...RECIPES})[ing].category.indexOf(selectedCategory) !== -1)?.length) 
+                : 
+                    unlockedIngredients.length}/{selectedCategory ? categoryQuantities[selectedCategory] : Object.keys({...INGREDIENTS, ...RECIPES}).length}
             </h1>
         </div>
 

@@ -1,7 +1,7 @@
 #recipes-div {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     width: calc(100vw - 70px);
-    top: 85px;
+    top: 65px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -28,7 +28,7 @@
 
 #recipes-grid {
     width: 100%;
-    height: calc(100% - 55px);
+    height: calc(100% - 85px);
     position: relative;
     left: 0px;
     top: 20px;
@@ -40,6 +40,15 @@
     gap: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+#recipes-quantity-label {
+    height: 30px;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+    top: 10px;
+    position: relative;
 }
 
 .recipe-item {
@@ -112,7 +121,7 @@
 }
 
 #recipe-info > ul {
-    top: 50px;
+    top: 20px;
     position: relative;
     display: block;
     margin-left: auto;

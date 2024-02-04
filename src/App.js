@@ -21,7 +21,8 @@ function App() {
 
   const getCategoryQuantities = (items) => {
     let quantities = {};
-    for (let cat in CATEGORIES) {
+    for (let i = 0; i < CATEGORIES.length; i++) {
+      let cat = CATEGORIES[i];
       quantities[cat] = Object.keys(items).filter(rec => items[rec].category.indexOf(cat) !== -1)?.length;
     }
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/recipes" element={<Recipes 
             unlockedIngredients={unlockedIngredients}
             setUnlockedIngredients={setUnlockedIngredients}
+            getCategoryQuantities={getCategoryQuantities}
           />} />
         </Routes>
       </HashRouter>

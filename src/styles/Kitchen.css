@@ -17,11 +17,18 @@
     position: relative;
     top: 20px;
     left: 0px;
-    height: calc(100% - 100px);
+    height: calc(100% - 120px);
     overflow-y: scroll;
     overflow-x: hidden;
     margin: 0px;
     list-style: none;
+}
+
+#ingredients-list-quantity-label {
+    text-align: center;
+    font-size: 24px;
+    top: 10px;
+    position: relative;
 }
 
 .ingredient-li {

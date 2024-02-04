@@ -2,7 +2,7 @@ import INGREDIENTS from "./ingredients.js";
 import RECIPES from "./recipes.js";
 
 export const DEFAULT_INGREDIENTS = Object.keys(INGREDIENTS);
-export const TEST_RECIPES = Object.keys(RECIPES);
+export const TEST_RECIPES = Object.keys({});
 
 export const DEFAULT_APPLIANCES = [
     {
