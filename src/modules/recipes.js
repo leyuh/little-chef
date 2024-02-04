@@ -9,8 +9,8 @@ const RECIPES = {
         "category": ["dairy"]
     },
     "cream": {
-        "appliance": ["fridge"],
-        "ingredientCombos": [["milk"]],
+        "appliance": ["fermenter"],
+        "ingredientCombos": [["milk", "salt"]],
         "icon": "",
         "category": ["dairy"]
     },

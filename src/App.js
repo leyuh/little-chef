@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 
 import Sound from "react-sound";
 import backgroundMusic from "./sounds/evening-meal-aylex-main-version-21980-02-41.mp3";
@@ -20,7 +20,7 @@ function App() {
   return (
     
     <div id="app">
-      <BrowserRouter>
+      <HashRouter>
         <NavBar />
 
         <Routes>
@@ -32,7 +32,7 @@ function App() {
           <Route path="/kitchen" element={<Kitchen />} />
           <Route path="/recipes" element={<Recipes />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
 
       <Sound 
         url={backgroundMusic}
