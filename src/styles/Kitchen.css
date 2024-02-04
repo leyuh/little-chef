@@ -37,10 +37,10 @@
 
 #workspace {
     width: calc(100% - 230px);
-    height: 100%;
+    height: calc(100% - 50px);
     position: relative;
     left: 230px;
-    top: 0px;
+    top: 50px;
 }
 
 #workspace-ingredients-div {

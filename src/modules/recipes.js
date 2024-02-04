@@ -8,12 +8,6 @@ const RECIPES = {
         "icon": "",
         "category": ["dairy"]
     },
-    "cream": {
-        "appliance": ["fermenter"],
-        "ingredientCombos": [["milk", "salt"]],
-        "icon": "",
-        "category": ["dairy"]
-    },
     "sour cream": {
         "appliance": ["fridge"],
         "ingredientCombos": [["bacteria", "cream"], ["vinegar", "cream"]],
@@ -33,7 +27,7 @@ const RECIPES = {
         "category": ["dairy", "liquids"]
     },
     "cheese": {
-        "appliance": [undefined],
+        "appliance": ["fermenter"],
         "ingredientCombos": [["milk", "salt"]],
         "icon": "",
         "category": ["dairy"]
@@ -50,21 +44,27 @@ const RECIPES = {
         "icon": "",
         "category": ["dairy"]
     },
-    "vanilla ice cream": {
+    "ice cream": {
         "appliance": ["fridge"],
-        "ingredientCombos": [["cream", "sugar", "vanilla beans"]],
+        "ingredientCombos": [["cream", "sugar"]],
+        "icon": "",
+        "category": ["dairy"]
+    },
+    "vanilla ice cream": {
+        "appliance": ["fridge", undefined],
+        "ingredientCombos": [["vanilla beans", "ice cream"], ["cream", "sugar", "vanilla beans"]],
         "icon": "",
         "category": ["dairy"]
     },
     "strawberry ice cream": {
         "appliance": ["fridge", undefined],
-        "ingredientCombos": [["strawberry", "vanilla ice cream"], ["cream", "sugar", "strawberry"]],
+        "ingredientCombos": [["strawberry", "ice cream"], ["cream", "sugar", "strawberry"]],
         "icon": "",
         "category": ["dairy"]
     },
     "chocolate ice cream": {
         "appliance": ["fridge", undefined],
-        "ingredientCombos": [["chocolate", "vanilla ice cream"], ["cream", "sugar", "chocolate"]],
+        "ingredientCombos": [["chocolate", "ice cream"], ["cream", "sugar", "chocolate"]],
         "icon": "",
         "category": ["dairy"]
     },

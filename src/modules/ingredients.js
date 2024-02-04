@@ -11,6 +11,10 @@ const INGREDIENTS = {
         "icon": "",
         "category": ["dairy", "liquids"]
     },
+    "cream": {
+        "icon": "",
+        "category": ["dairy", "liquids"]
+    },
 
     // BAKING
     "sugar": {

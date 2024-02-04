@@ -10,17 +10,21 @@ import FilterBar from "../components/FilterBar.js";
 import INGREDIENTS from "../modules/ingredients.js";
 import RECIPES from "../modules/recipes.js";
 
+
 import { DEFAULT_INGREDIENTS, DEFAULT_APPLIANCES } from "../modules/configs.js";
 
 
 const Kitchen = (props) => {
     const {
         playMusic,
-        setPlayMusic
+        setPlayMusic,
+        unlockedIngredients,
+        setUnlockedIngredients,
+        getCategoryQuantities
     } = props;
 
 
-    const [unlockedIngredients, setUnlockedIngredients] = useState(DEFAULT_INGREDIENTS);
+    
 
     const [searchedUnlockedIngredients, setSearchedUnlockedIngredients] = useState(unlockedIngredients);
     const [filteredUnlockedIngredients, setFilteredUnlockedIngredients] = useState(unlockedIngredients);
@@ -33,6 +37,9 @@ const Kitchen = (props) => {
     const [workspaceIngredients, setWorkspaceIngredients] = useState([]);
     const [workspaceAppliances, setWorkspaceAppliances] = useState(DEFAULT_APPLIANCES);
     const [currKey, setCurrKey] = useState(DEFAULT_APPLIANCES.length);
+
+    const [categoryQuantities, setCategoryQuantities] = useState(getCategoryQuantities([...INGREDIENTS, ...RECIPES]));
+    const [selectedCategoryQuantity, setSelectedCategoryQuantity] = useState(Object.values(categoryQuantities).reduce((a, b) => a + b, 0));
 
     const workspaceRef = useRef(null);
 
@@ -187,6 +194,8 @@ const Kitchen = (props) => {
                 items={unlockedIngredients}
                 filteredItems={filteredUnlockedIngredients}
                 setFilteredItems={setFilteredUnlockedIngredients}
+                categoryQuantities={categoryQuantities}
+                setSelectedCategoryQuantity={setSelectedCategoryQuantity}
             />
 
             <ul id="ingredients-list">
@@ -206,6 +215,10 @@ const Kitchen = (props) => {
                     </li>
                 })}
             </ul>
+
+            <h1 id="ingredients-list-quantity-label">
+                {selectedCategoryQuantity}
+            </h1>
         </div>
 
         <div id="workspace" ref={workspaceRef}>

@@ -10,17 +10,21 @@ const FilterBar = (props) => {
     const {
         items,
         filteredItems,
-        setFilteredItems
+        setFilteredItems,
+        categoryQuantities,
+        setSelectedCategoryQuantity
     } = props;
 
     const [input, setInput] = useState(null);
 
     useEffect(() => {
-
-        (!input || input === "all") ? 
-            setFilteredItems(items) 
-        :
+        if (!input || input === "all") {
+            setFilteredItems(items);
+            setSelectedCategoryQuantity(Object.values(categoryQuantities).reduce((a, b) => a + b, 0))
+        } else {
+            setSelectedCategoryQuantity(categoryQuantities[input]);
             setFilteredItems(items.filter(item => (RECIPES[item] || INGREDIENTS[item]).category.indexOf(input) !== -1));
+        }
     }, [input, items])
 
     return <div className="filter-bar bar bg5 text0">

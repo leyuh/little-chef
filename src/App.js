@@ -12,10 +12,21 @@ import Home from "./pages/Home.js";
 import Kitchen from './pages/Kitchen.js';
 import Recipes from "./pages/Recipes.js";
 
+import { DEFAULT_INGREDIENTS, TEST_RECIPES, CATEGORIES } from "./modules/configs.js";
+
 function App() {
 
   const [playMusic, setPlayMusic] = useState(false);
+  const [unlockedIngredients, setUnlockedIngredients] = useState([...DEFAULT_INGREDIENTS, ...TEST_RECIPES]);
 
+  const getCategoryQuantities = (items) => {
+    let quantities = {};
+    for (let cat in CATEGORIES) {
+      quantities[cat] = Object.keys(items).filter(rec => items[rec].category.indexOf(cat) !== -1)?.length;
+    }
+
+    return quantities;
+  }
 
   return (
     
@@ -29,8 +40,15 @@ function App() {
             setPlayMusic={setPlayMusic}
           />}/>
           
-          <Route path="/kitchen" element={<Kitchen />} />
-          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/kitchen" element={<Kitchen 
+            unlockedIngredients={unlockedIngredients}
+            setUnlockedIngredients={setUnlockedIngredients}
+            getCategoryQuantities={getCategoryQuantities}
+          />} />
+          <Route path="/recipes" element={<Recipes 
+            unlockedIngredients={unlockedIngredients}
+            setUnlockedIngredients={setUnlockedIngredients}
+          />} />
         </Routes>
       </HashRouter>
 
