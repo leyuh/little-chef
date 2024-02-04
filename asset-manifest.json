@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/little-chef/static/css/main.1c9c9841.css",
-    "main.js": "/little-chef/static/js/main.257e47f6.js",
+    "main.js": "/little-chef/static/js/main.c1390f0c.js",
     "static/media/evening-meal-aylex-main-version-21980-02-41.mp3": "/little-chef/static/media/evening-meal-aylex-main-version-21980-02-41.a911a8fc0e259dbe835c.mp3",
     "static/media/logo.png": "/little-chef/static/media/logo.50a6c85d1a3607ff20e6.png",
     "index.html": "/little-chef/index.html",
     "main.1c9c9841.css.map": "/little-chef/static/css/main.1c9c9841.css.map",
-    "main.257e47f6.js.map": "/little-chef/static/js/main.257e47f6.js.map"
+    "main.c1390f0c.js.map": "/little-chef/static/js/main.c1390f0c.js.map"
   },
   "entrypoints": [
     "static/css/main.1c9c9841.css",
-    "static/js/main.257e47f6.js"
+    "static/js/main.c1390f0c.js"
   ]
 }
