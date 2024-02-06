@@ -1,5 +1,5 @@
 #recipes-div {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 200px);
     width: calc(100vw - 70px);
     top: 65px;
     position: relative;
@@ -97,6 +97,8 @@
     right: -10px;
     margin: 0px;
     box-sizing: border-box;
+    overflow-y: scroll;
+    z-index: 10;
 }
 
 #recipe-info > h1 {
@@ -131,4 +133,12 @@
 
 .recipe-ingredient-combo-list {
     display: inline-block;
+}
+
+@media screen and (max-width: 1000px) {
+    .half {
+        width: calc(100% + 20px) !important;
+        margin-left: -10px;
+        display: block;
+    }
 }

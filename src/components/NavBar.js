@@ -5,6 +5,9 @@ import { useEffect } from "react";
 const NavBar = (props) => {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        navigate("/");
+    }, [])
 
     return <div id="nav-bar">
         

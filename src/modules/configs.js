@@ -48,7 +48,7 @@ export const CATEGORIES = [
 ]
 
 // CHECKERBOARD
-export const TILE_SIZE = 100;
+export const TILE_SIZE = window.screen.width > 1000 ? 100 : 80;
 export const BORDER_WIDTH = 15;
 
 

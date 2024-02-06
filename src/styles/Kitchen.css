@@ -86,3 +86,18 @@
 .grid-item:hover {
     cursor: url("../images/grab-cursor.png"), auto !important;
 }
+
+@media screen and (max-width: 1000px) {
+    .ingredient-li {
+        height: 80px;
+        width: 80px;
+        left: 10px;
+    }
+    #ingredients-div {
+        width: 100px;
+    }
+    #workspace {
+        left: 130px;
+        width: calc(100% - 140px);
+    }
+}
