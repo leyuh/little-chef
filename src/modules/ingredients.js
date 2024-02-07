@@ -70,6 +70,10 @@ const INGREDIENTS = {
         "icon": "",
         "category": ["fruits"]
     },
+    "blueberry": {
+        "icon": "",
+        "category": ["fruits"]
+    },
     "lemon": {
         "icon": "",
         "category": ["fruits"]

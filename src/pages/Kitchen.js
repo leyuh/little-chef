@@ -74,19 +74,20 @@ const Kitchen = (props) => {
             }
         }) 
 
-        console.log(recipeNames);
-
-
         let recipeVariantsNames = [];
         let recipeVariantsIngredients = [];
 
         for (let i = 0; i < recipeNames.length; i++) {
+
             let recipeName = recipeNames[i];
             let combo = ingredientsLists[i];
             let recipe = RECIPES[recipeName];
 
+
+
             // check if ingredients include variant ingredients
             if (recipe.hasOwnProperty("variants")) {
+
                 for (let j = 0; j < Object.keys(recipe.variants).length; j++) {
                     let variantName = Object.keys(recipe.variants)[j];
                     let variantIngredients = recipe.variants[variantName];
@@ -101,18 +102,20 @@ const Kitchen = (props) => {
                 }
             }
 
-            // filter out recipe if it can not exist alone
-            let canExistAlone = recipe.hasOwnProperty("canExistAlone") ? recipe.canExistAlone : true;
-            if (!canExistAlone) {
-                console.log("REMOVING ", recipeName);
-                recipeNames.splice(i, 1);
-                ingredientsLists.splice(i, 1);
-            }
+           
         }
 
+        // filter out recipe if it can not exist alone
+
+        ingredientsLists.filter((list, i) => !RECIPES[Object.keys(RECIPES)[i]].hasOwnProperty("canExistAlone") ? true : RECIPES[Object.keys(RECIPES)[i]].canExistAlone);
+        recipeNames.filter(name => !RECIPES[name].hasOwnProperty("canExistAlone") ? true : RECIPES[name].canExistAlone);
+        
         // add variants to recipe lists
         recipeNames.push(...recipeVariantsNames);
         ingredientsLists.push(...recipeVariantsIngredients);
+
+        
+        
 
         
         // favor most complicated recipe
@@ -131,7 +134,6 @@ const Kitchen = (props) => {
         let recipeName = recipeNames[mostComplicatedIndex];
 
         if (recipeName) {
-            console.log("recipe found");
             setSelectedItem(null);
 
             if (unlockedIngredients.indexOf(recipeName) === -1) {
@@ -265,7 +267,7 @@ const Kitchen = (props) => {
 
             <h1 id="ingredients-list-quantity-label" className="text1">
                 {selectedCategory ? 
-                    (unlockedIngredients.filter(ing => ({...INGREDIENTS, ...RECIPES})[ing].category.indexOf(selectedCategory) !== -1)?.length) 
+                    (unlockedIngredients.filter(ing => (({...INGREDIENTS, ...RECIPES})[ing] || RECIPES[ing.split(" ").slice(1).join(" ")]).category.indexOf(selectedCategory) !== -1)?.length) 
                 : 
                     unlockedIngredients.length}/{selectedCategory ? categoryQuantities[selectedCategory] : Object.keys({...INGREDIENTS, ...RECIPES}).length}
             </h1>

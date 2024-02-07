@@ -16,7 +16,7 @@ const RECIPES = {
     },
     "milk": {
         "appliance": [undefined, "fridge"],
-        "ingredientCombos": [["milk", "chocolate"]],
+        "ingredientCombos": [["milk"]],
         "icon": "",
         "category": ["dairy", "liquids", "sweets"],
         "variants": {
@@ -32,15 +32,17 @@ const RECIPES = {
         "category": ["dairy"]
     },
     "yogurt": {
-        "appliance": ["oven", "fridge"],
-        "ingredientCombos": [["milk", "bacteria"]],
+        "appliance": ["fridge"],
+        "ingredientCombos": [["plain yogurt"], ["milk", "bacteria"]],
         "icon": "",
         "category": ["dairy"],
         "variants": {
-            "vanilla": ["vanilla bean"],
-            "strawberry": ["strawberry"]
+            "plain": [],
+            "vanilla": ["vanilla beans"],
+            "strawberry": ["strawberry"],
+            "blueberry": ["blueberry"]
         },
-        "canExistAlone": true
+        "canExistAlone": false
     },
     "ice cream": {
         "appliance": ["fridge"],
@@ -48,7 +50,7 @@ const RECIPES = {
         "icon": "",
         "category": ["dairy", "sweets"],
         "variants": {
-            "vanilla": ["vanilla bean"],
+            "vanilla": ["vanilla beans"],
             "strawberry": ["strawberry"],
             "chocolate": ["chocolate"],
             "caramel": ["caramel"],
@@ -57,16 +59,16 @@ const RECIPES = {
         "canExistAlone": false
     },
     "milkshake": {
-        "appliance": ["fridge"],
+        "appliance": ["fridge", undefined],
         "ingredientCombos": [["milk"]],
         "icon": "",
         "category": ["dairy", "sweets"],
         "variants": {
-            "vanilla": ["vanilla icecream"],
-            "strawberry": ["strawberry icecream"],
-            "chocolate": ["chocolate icecream"],
-            "caramel": ["caramel icecream"],
-            "mocha": ["mocha icecream"]
+            "vanilla": ["vanilla ice cream"],
+            "strawberry": ["strawberry ice cream"],
+            "chocolate": ["chocolate ice cream"],
+            "caramel": ["caramel ice cream"],
+            "mocha": ["mocha ice cream"]
         },
         "canExistAlone": false
     },
@@ -278,7 +280,7 @@ const RECIPES = {
         "appliance": ["oven"],
         "ingredientCombos": [["wheat bread"], ["sour dough bread"]],
         "icon": "",
-        "category": ["breakfast"]
+        "category": ["breakfast", "grains"]
     },
     "toast": {
         "appliance": [undefined],

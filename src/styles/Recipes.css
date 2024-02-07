@@ -99,6 +99,7 @@
     box-sizing: border-box;
     overflow-y: scroll;
     z-index: 10;
+    padding-bottom: 50px;
 }
 
 #recipe-info > h1 {

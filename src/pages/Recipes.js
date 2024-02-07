@@ -90,28 +90,79 @@ const Recipes = (props) => {
                 <button id="recipe-info-close-btn" className="bg5 border1 text1" onClick={() => setRecipeInfo(null)}>&lt;</button>
                 <h1>{recipeInfo}</h1>
                 <ul>
-                    {Object.keys(RECIPES[recipeInfo]).map((prop, i) => {
-                        if (prop === "icon") return;
-                        return <li key={i}>
-                            <h4>{prop === "appliance" ? "appliances" : prop === "ingredientCombos" ? "recipes" : "categories"}</h4>
-                            <ul>
-                                {RECIPES[recipeInfo][prop].map((val, j) => {
-                                    if (prop === "ingredientCombos") {
+                    
+                    <li>
+                        <h4>categories</h4>
+                        <ul>{RECIPES[recipeInfo].category.map((cat, i) => {
+                            return <li key={i}>
+                                {cat}
+                            </li>
+                        })}</ul>
+                    </li>
+
+                    <li>
+                        <h4>appliances</h4>
+                        <ul>{RECIPES[recipeInfo].appliance.map((app, i) => {
+                            return <li key={i}>
+                                {app === undefined ? "counter" : app}
+                            </li>
+                        })}</ul>
+                    </li>
+
+                    {RECIPES[recipeInfo].variants && <li>
+                        <h4>variants</h4>
+                        <ul>
+                            {RECIPES[recipeInfo].canExistAlone && <li>{recipeInfo}</li>}
+                            {Object.keys(RECIPES[recipeInfo].variants).map((vari, i) => {
+                                return <li key={i}>
+                                    {vari} {recipeInfo}
+                                </li>
+                            })}
+                        </ul>
+                    </li>}
+
+                    {!RECIPES[recipeInfo].variants ? 
+                        <li>
+                            <h4>recipes</h4>
+                            {RECIPES[recipeInfo].ingredientCombos.map((combo, i) => {
+                                return <ul key={i} className="recipe-ingredient-combo-list">
+                                    {RECIPES[recipeInfo].ingredientCombos[i].map((ing, j) => {
+                                        return <li key={j}>{ing}</li>
+                                    })}
+                                </ul>
+                            })}
+                        </li> 
+                    : 
+                        <li>
+                            <h4>recipes</h4>
+                            {RECIPES[recipeInfo].canExistAlone && <>
+                                <ul>
+                                    <h4>plain</h4>
+                                    {RECIPES[recipeInfo].ingredientCombos.map((combo, j) => {
                                         return <ul key={j} className="recipe-ingredient-combo-list">
-                                            {RECIPES[recipeInfo][prop][j].map((val, k) => {
-                                                return <li key={k}>{val}</li>
+                                            {RECIPES[recipeInfo].ingredientCombos[j].map((ing, k) => {
+                                                return <li key={k}>{ing}</li>
                                             })}
                                         </ul>
-                                    } else {
-                                        return <li key={j}>
-                                            {(prop === "appliance" && val === undefined) ? "counter" : val}
-                                        </li>
-                                    }
-                                    
-                                })}
-                            </ul>
+                                    })}
+                                </ul>
+                            </>}
+
+                            {Object.keys(RECIPES[recipeInfo].variants).map((vari, i) => {
+                                return <ul key={i}>
+                                    <h4>{vari}</h4>
+                                    {RECIPES[recipeInfo].ingredientCombos.map((combo, j) => {
+                                        return <ul key={j} className="recipe-ingredient-combo-list">
+                                            {[...RECIPES[recipeInfo].ingredientCombos[j], ...RECIPES[recipeInfo].variants[vari]].map((ing, k) => {
+                                                return <li key={k}>{ing}</li>
+                                            })}
+                                        </ul>
+                                    })}
+                                </ul>
+                            })}
                         </li>
-                    })}
+                    }
+
                 </ul>
             </div>}
         </div>

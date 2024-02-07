@@ -22,7 +22,13 @@ const FilterBar = (props) => {
             setSelectedCategory(null);
         } else {
             setSelectedCategory(input);
-            setFilteredItems(items.filter(item => (RECIPES[item] || INGREDIENTS[item]).category.indexOf(input) !== -1));
+
+
+            setFilteredItems(items.filter(item => {
+                let parentItem = (RECIPES[item] || INGREDIENTS[item]) ? (RECIPES[item] || INGREDIENTS[item]) : RECIPES[item.split(" ").slice(1).join(" ")];
+ 
+                return parentItem.category.indexOf(input) !== -1
+            }))
         }
     }, [input, items])
 

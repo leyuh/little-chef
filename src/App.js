@@ -24,7 +24,10 @@ function App() {
     let quantities = {};
     for (let i = 0; i < CATEGORIES.length; i++) {
       let cat = CATEGORIES[i];
-      quantities[cat] = Object.keys(items).filter(rec => items[rec].category.indexOf(cat) !== -1)?.length;
+
+      let total = 0;
+      Object.keys(items).filter(rec => items[rec].category.indexOf(cat) !== -1).map(rec => items[rec].hasOwnProperty("variants") ? total += Object.keys(items[rec].variants).length : total += 1);
+      quantities[cat] = total;
     }
 
     return quantities;
