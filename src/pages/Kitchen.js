@@ -54,7 +54,7 @@ const Kitchen = (props) => {
         })
         let sameTileAppliance = workspaceAppliances.find(app => app.tile === selectedWorkspaceItem.tile);
 
-        let includesAll = (arr, values) => values.every(val => arr.includes(val));
+        const includesAll = (arr, values) => values.every(val => arr.includes(val));
         let sameApplianceRecipeNames = Object.keys(RECIPES).filter(recipeName => RECIPES[recipeName].appliance.indexOf(sameTileAppliance?.name) !== -1);
         let recipeNames = [];
         let ingredientsLists = [];
@@ -62,14 +62,58 @@ const Kitchen = (props) => {
             let recipe = RECIPES[recName];
 
             for (let i = 0; i < recipe.ingredientCombos.length; i++) {
-                console.log(recipe);
-                if (includesAll(sameTileIngredients.map(ing => ing.name), recipe.ingredientCombos[i])) {
+
+                let combo = recipe.ingredientCombos[i];
+                if (recName === "toast") console.log(combo);
+            
+                // check if ingredients include recipe ingredients
+                if (includesAll(sameTileIngredients.map(ing => ing.name), combo)) {
                     recipeNames.push(recName);
-                    ingredientsLists.push(recipe.ingredientCombos[i]);
-                    break;
+                    ingredientsLists.push(combo);
                 }
             }
         }) 
+
+        console.log(recipeNames);
+
+
+        let recipeVariantsNames = [];
+        let recipeVariantsIngredients = [];
+
+        for (let i = 0; i < recipeNames.length; i++) {
+            let recipeName = recipeNames[i];
+            let combo = ingredientsLists[i];
+            let recipe = RECIPES[recipeName];
+
+            // check if ingredients include variant ingredients
+            if (recipe.hasOwnProperty("variants")) {
+                for (let j = 0; j < Object.keys(recipe.variants).length; j++) {
+                    let variantName = Object.keys(recipe.variants)[j];
+                    let variantIngredients = recipe.variants[variantName];
+
+                    let variantCombo = [...combo, ...variantIngredients];
+
+
+                    if (includesAll(sameTileIngredients.map(ing => ing.name), variantCombo)) {
+                        recipeVariantsNames.push(variantName + " " + recipeName);
+                        recipeVariantsIngredients.push(variantCombo);
+                    }
+                }
+            }
+
+            // filter out recipe if it can not exist alone
+            let canExistAlone = recipe.hasOwnProperty("canExistAlone") ? recipe.canExistAlone : true;
+            if (!canExistAlone) {
+                console.log("REMOVING ", recipeName);
+                recipeNames.splice(i, 1);
+                ingredientsLists.splice(i, 1);
+            }
+        }
+
+        // add variants to recipe lists
+        recipeNames.push(...recipeVariantsNames);
+        ingredientsLists.push(...recipeVariantsIngredients);
+
         
         // favor most complicated recipe
         let mostComplicatedIngredients;
@@ -85,7 +129,6 @@ const Kitchen = (props) => {
 
         let ingredientsList = mostComplicatedIngredients;
         let recipeName = recipeNames[mostComplicatedIndex];
-
 
         if (recipeName) {
             console.log("recipe found");

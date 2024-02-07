@@ -85,12 +85,6 @@ const RECIPES = {
         },
         "canExistAlone": false
     },
-    "toast": {
-        "appliance": ["oven"],
-        "ingredientCombos": [["wheat bread"], ["sour dough bread"]],
-        "icon": "",
-        "category": ["grains", "breakfast"]
-    },
     "tortilla": {
         "appliance": ["oven"],
         "ingredientCombos": [["flour", "water", "salt"]],
@@ -280,9 +274,15 @@ const RECIPES = {
     },
 
     // BREAKFAST
+    "toasted bread": {
+        "appliance": ["oven"],
+        "ingredientCombos": [["wheat bread"], ["sour dough bread"]],
+        "icon": "",
+        "category": ["breakfast"]
+    },
     "toast": {
         "appliance": [undefined],
-        "ingredientCombos": [["peanut butter", "toast"]],
+        "ingredientCombos": [["toasted bread"]],
         "icon": "",
         "category": ["breakfast"],
         "variants": {
@@ -290,7 +290,7 @@ const RECIPES = {
             "buttered": ["butter"],
             "peanut butter": ["peanut butter"]
         },
-        "canExistAlone": true
+        "canExistAlone": false
     },
     "pancake": {
         "appliance": [undefined],
