@@ -6,6 +6,16 @@ const INGREDIENTS = {
         "category": ["liquids"]
     },
 
+    // FERMENTS
+    "bacteria": {
+        "icon": "",
+        "category": ["ferments"]
+    },
+    "yeast": {
+        "icon": "",
+        "category": ["ferments"]
+    },
+
     // DAIRY
     "milk": {
         "icon": "",
@@ -26,6 +36,10 @@ const INGREDIENTS = {
         "category": ["baking"]
     },
     "flour": {
+        "icon": "",
+        "category": ["baking"]
+    },
+    "baking powder": {
         "icon": "",
         "category": ["baking"]
     },

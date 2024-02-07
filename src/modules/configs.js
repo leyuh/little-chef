@@ -16,11 +16,6 @@ export const DEFAULT_APPLIANCES = [
         key: 1
     },
     {
-        name: "fermenter",
-        tile: `${3}-${0}`,
-        key: 3
-    },
-    {
         name: "trash",
         tile: `${0}-${0}`,
         key: 2
@@ -43,7 +38,8 @@ export const CATEGORIES = [
     "seeds",
     "grains",
     "pastries",
-    "meals",
+    "entrees",
+    "breakfast",
     "sides"
 ]
 

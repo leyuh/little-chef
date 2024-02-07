@@ -14,21 +14,20 @@ const RECIPES = {
         "icon": "",
         "category": ["dairy"]
     },
-    "chocolate milk": {
+    "milk": {
         "appliance": [undefined, "fridge"],
         "ingredientCombos": [["milk", "chocolate"]],
         "icon": "",
-        "category": ["dairy", "liquids"]
-    },
-    "strawberry milk": {
-        "appliance": [undefined, "fridge"],
-        "ingredientCombos": [["milk", "strawberry"]],
-        "icon": "",
-        "category": ["dairy", "liquids"]
+        "category": ["dairy", "liquids", "sweets"],
+        "variants": {
+            "chocolate": ["chocolate"],
+            "strawberry": ["strawberry"]
+        },
+        "canExistAlone": false
     },
     "cheese": {
-        "appliance": ["fermenter"],
-        "ingredientCombos": [["milk", "salt"]],
+        "appliance": [undefined],
+        "ingredientCombos": [["milk", "salt", "bacteria"]],
         "icon": "",
         "category": ["dairy"]
     },
@@ -36,56 +35,42 @@ const RECIPES = {
         "appliance": ["oven", "fridge"],
         "ingredientCombos": [["milk", "bacteria"]],
         "icon": "",
-        "category": ["dairy"]
-    },
-    "strawberry yogurt": {
-        "appliance": ["fridge", undefined],
-        "ingredientCombos": [["strawberry", "yogurt"]],
-        "icon": "",
-        "category": ["dairy"]
+        "category": ["dairy"],
+        "variants": {
+            "vanilla": ["vanilla bean"],
+            "strawberry": ["strawberry"]
+        },
+        "canExistAlone": true
     },
     "ice cream": {
         "appliance": ["fridge"],
         "ingredientCombos": [["cream", "sugar"]],
         "icon": "",
-        "category": ["dairy"]
+        "category": ["dairy", "sweets"],
+        "variants": {
+            "vanilla": ["vanilla bean"],
+            "strawberry": ["strawberry"],
+            "chocolate": ["chocolate"],
+            "caramel": ["caramel"],
+            "mocha": ["mocha"]
+        },
+        "canExistAlone": false
     },
-    "vanilla ice cream": {
-        "appliance": ["fridge", undefined],
-        "ingredientCombos": [["vanilla beans", "ice cream"], ["cream", "sugar", "vanilla beans"]],
-        "icon": "",
-        "category": ["dairy"]
-    },
-    "strawberry ice cream": {
-        "appliance": ["fridge", undefined],
-        "ingredientCombos": [["strawberry", "ice cream"], ["cream", "sugar", "strawberry"]],
-        "icon": "",
-        "category": ["dairy"]
-    },
-    "chocolate ice cream": {
-        "appliance": ["fridge", undefined],
-        "ingredientCombos": [["chocolate", "ice cream"], ["cream", "sugar", "chocolate"]],
-        "icon": "",
-        "category": ["dairy"]
-    },
-    "vanilla milkshake": {
+    "milkshake": {
         "appliance": ["fridge"],
-        "ingredientCombos": [["vanilla icecream", "milk"]],
+        "ingredientCombos": [["milk"]],
         "icon": "",
-        "category": ["dairy"]
+        "category": ["dairy", "sweets"],
+        "variants": {
+            "vanilla": ["vanilla icecream"],
+            "strawberry": ["strawberry icecream"],
+            "chocolate": ["chocolate icecream"],
+            "caramel": ["caramel icecream"],
+            "mocha": ["mocha icecream"]
+        },
+        "canExistAlone": false
     },
-    "strawberry milkshake": {
-        "appliance": ["fridge"],
-        "ingredientCombos": [["strawberry icecream", "milk"]],
-        "icon": "",
-        "category": ["dairy"]
-    },
-    "chocolate milkshake": {
-        "appliance": ["fridge"],
-        "ingredientCombos": [["chocolate icecream", "milk"]],
-        "icon": "",
-        "category": ["dairy"]
-    },
+    
 
 
     // GRAINS
@@ -93,13 +78,18 @@ const RECIPES = {
         "appliance": ["oven"],
         "ingredientCombos": [["flour", "water", "yeast"]],
         "icon": "",
-        "category": ["grains"]
+        "category": ["grains"],
+        "variants": {
+            "sour dough": ["bacteria"],
+            "wheat": []
+        },
+        "canExistAlone": false
     },
     "toast": {
         "appliance": ["oven"],
-        "ingredientCombos": [["bread"]],
+        "ingredientCombos": [["wheat bread"], ["sour dough bread"]],
         "icon": "",
-        "category": ["grains"]
+        "category": ["grains", "breakfast"]
     },
     "tortilla": {
         "appliance": ["oven"],
@@ -107,9 +97,27 @@ const RECIPES = {
         "icon": "",
         "category": ["grains"]
     },
+    "taco shell": {
+        "appliance": ["oven"],
+        "ingredientCombos": [["oil", "tortilla"]],
+        "icon": "",
+        "category": ["grains"]
+    },
+    "tortilla chips": {
+        "appliance": ["oven"],
+        "ingredientCombos": [["oil", "tortilla", "salt"]],
+        "icon": "",
+        "category": ["grains", "sides"]
+    },
     "pasta": {
         "appliance": ["oven"],
         "ingredientCombos": [["flour", "egg", "salt", "oil"]],
+        "icon": "",
+        "category": ["grains"]
+    },
+    "pizza dough": {
+        "appliance": ["oven"],
+        "ingredientCombos": [["flour", "yeast", "salt", "oil", "water"]],
         "icon": "",
         "category": ["grains"]
     },
@@ -177,21 +185,9 @@ const RECIPES = {
     },
 
     // FERMENTS
-    "bacteria": {
-        "appliance": ["fermenter"],
-        "ingredientCombos": [["sugar"]],
-        "icon": "",
-        "category": ["ferments"]
-    },
-    "yeast": {
-        "appliance": ["fermenter"],
-        "ingredientCombos": [["flour", "water"]],
-        "icon": "",
-        "category": ["ferments"]
-    },
     "vinegar": {
-        "appliance": ["fermenter"],
-        "ingredientCombos": [["yeast", "sugar"]],
+        "appliance": [undefined],
+        "ingredientCombos": [["yeast", "bacteria", "sugar"]],
         "icon": "",
         "category": ["liquids", "ferments"]
     },
@@ -239,7 +235,7 @@ const RECIPES = {
         "icon": "",
         "category": ["condiment"]
     },
-    "spaghetti sauce": {
+    "marinara sauce": {
         "appliance": ["oven"],
         "ingredientCombos": [["tomato paste", "onion", "garlic", "water"]],
         "icon": "",
@@ -254,17 +250,25 @@ const RECIPES = {
         "icon": "",
         "category": ["pastries"]
     },
-    "apple pie filling": {
+    "pie filling": {
         "appliance": ["oven"],
-        "ingredientCombos": [["apple", "sugar", "water", "butter", "cinnamon"]],
+        "ingredientCombos": [["sugar", "water"]],
         "icon": "",
-        "category": ["pastries", "sweets"]
+        "category": ["pastries", "sweets"],
+        "variants": {
+            "apple": ["apple", "cinnamon"]
+        },
+        "canExistAlone": false
     },
-    "apple pie": {
+    "pie": {
         "appliance": ["oven", undefined],
-        "ingredientCombos": [["pie crust", "apple pie filling"]],
+        "ingredientCombos": [["pie crust", "sugar", "water", "butter"]],
         "icon": "",
-        "category": ["pastries", "sweets"]
+        "category": ["pastries", "sweets"],
+        "variants": {
+            "apple": ["pie crust", "apple pie filling"]
+        },
+        "canExistAlone": false
     },
 
     // SWEETS
@@ -275,57 +279,116 @@ const RECIPES = {
         "category": ["sweets"]
     },
 
-    // MEALS
+    // BREAKFAST
+    "toast": {
+        "appliance": [undefined],
+        "ingredientCombos": [["peanut butter", "toast"]],
+        "icon": "",
+        "category": ["breakfast"],
+        "variants": {
+            "jam": ["strawberry jam"],
+            "buttered": ["butter"],
+            "peanut butter": ["peanut butter"]
+        },
+        "canExistAlone": true
+    },
+    "pancake": {
+        "appliance": [undefined],
+        "ingredientCombos": [
+            ["flour", "baking powder", "sugar", "milk", "butter", "egg"],
+            ["flour", "baking powder", "sugar", "milk", "oil", "egg"],
+        ],
+        "icon": "",
+        "category": ["breakfast"]
+    },
+    "omelette": {
+        "appliance": [undefined],
+        "ingredientCombos": [["cheese", "egg"]],
+        "icon": "",
+        "category": ["breakfast"]
+    },
+
+    // ENTREES
     "spaghetti": {
         "appliance": ["oven"],
-        "ingredientCombos": [["spaghetti sauce", "pasta"]],
+        "ingredientCombos": [["marinara sauce", "pasta"]],
         "icon": "",
-        "category": ["meals"]
+        "category": ["entrees"]
+    },
+    "taco": {
+        "appliance": [undefined],
+        "ingredientCombos": [
+            ["taco shell", "sour cream", "lettuce", "cheese"], 
+        ],
+        "icon": "",
+        "category": ["entrees"],
+        "variants": {
+            "chicken": ["chicken"],
+            "beef": ["ground beef"]
+        },
+        "canExistAlone": false
+    },
+    "burrito": {
+        "appliance": [undefined],
+        "ingredientCombos": [
+            ["tortilla", "sour cream", "lettuce", "cheese"], 
+        ],
+        "icon": "",
+        "category": ["entrees"],
+        "variants": {
+            "chicken": ["chicken"],
+            "beef": ["ground beef"]
+        },
+        "canExistAlone": false
+    },
+    "pizza": {
+        "appliance": ["oven"],
+        "ingredientCombos": [["marinara sauce", "cheese", "pizza dough"]],
+        "icon": "",
+        "category": ["entrees"]
     },
     "alfredo": {
         "appliance": ["oven"],
         "ingredientCombos": [["alfredo sauce", "pasta"]],
         "icon": "",
-        "category": ["meals"]
+        "category": ["entrees"]
     },
     "pb&j sandwich": {
         "appliance": [undefined],
         "ingredientCombos": [["bread", "peanut butter", "strawberry jam"]],
         "icon": "",
-        "category": ["meals"]
+        "category": ["entrees"]
     },
-    "peanut butter toast": {
+    "salad": {
         "appliance": [undefined],
-        "ingredientCombos": [["peanut butter", "toast"]],
+        "ingredientCombos": [["lettuce", "cheese"]],
         "icon": "",
-        "category": ["meals"]
+        "category": ["entrees"],
+        "variants": {
+            "caesar": ["lemon", "oil", "egg"],
+            "house": ["ranch", "tomato"]
+        },
+        "canExistAlone": false
     },
-    "jam toast": {
+    "burger": {
         "appliance": [undefined],
-        "ingredientCombos": [["strawberry jam", "toast"]],
+        "ingredientCombos": [["lettuce", "patty", "bun", "tomato"]],
         "icon": "",
-        "category": ["meals"]
-    },
-    "house salad": {
-        "appliance": [undefined],
-        "ingredientCombos": [["lettuce", "ranch", "cheese", "tomato"]],
-        "icon": "",
-        "category": ["meals"]
-    },
-    "caesar salad": {
-        "appliance": [undefined],
-        "ingredientCombos": [["lettuce", "lemon", "oil", "egg", "cheese"]],
-        "icon": "",
-        "category": ["meals"]
-    },
-    "hamburger": {
-        "appliance": [undefined],
-        "ingredientCombos": [["lettuce", "cheese", "hamburger patty", "bun", "tomato"]],
-        "icon": "",
-        "category": ["meals"]
+        "category": ["entrees"],
+        "variants": {
+            "cheese": ["cheese"]
+        },
+        "canExistAlone": true
     },
 
+
     // SIDES
+    "potato chips": {
+        "appliance": ["oven"],
+        "ingredientCombos": [["oil", "potato", "salt"]],
+        "icon": "",
+        "category": ["sides"]
+    },
     "french fries": {
         "appliance": ["oven"],
         "ingredientCombos": [["oil", "potato", "salt"]],
@@ -334,7 +397,7 @@ const RECIPES = {
     },
 
     // PROTEINS
-    "hamburger patty": {
+    "patty": {
         "appliance": ["oven"],
         "ingredientCombos": [["ground beef", "milk", "egg"]],
         "icon": "",
