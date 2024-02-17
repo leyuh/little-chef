@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { CATEGORIES } from "../modules/configs.js";
-import RECIPES from "../modules/recipes.js";
+import { RECIPES } from "../modules/recipes.js";
 import INGREDIENTS from "../modules/ingredients.js";
 
 import "../styles/Bar.css";

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import useStickyState from "../hooks/useStickyState.js";
 
 import "../styles/Recipes.css";
 
-import RECIPES from "../modules/recipes.js";
+import { RAW_RECIPES, RECIPES } from "../modules/recipes.js";
 
 import SearchBar from "../components/SearchBar.js";
 import FilterBar from "../components/FilterBar.js";
@@ -16,7 +15,7 @@ const Recipes = (props) => {
     } = props;
 
 
-    const [items, setItems] = useState(Object.keys(RECIPES));
+    const [items, setItems] = useState(Object.keys(RAW_RECIPES));
     const [searchedRecipes, setSearchedRecipes] = useState(items);
     const [filteredRecipes, setFilteredRecipes] = useState(items);
 
@@ -28,7 +27,6 @@ const Recipes = (props) => {
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
-
         setViewRecipes(filteredRecipes.filter(rec => searchedRecipes.indexOf(rec) !== -1).sort((a, b) => {
             if (unlockedIngredients.indexOf(a) === -1 && unlockedIngredients.indexOf(b) !== -1) return 1;
             if (unlockedIngredients.indexOf(a) !== -1 && unlockedIngredients.indexOf(b) === -1) return -1;
@@ -50,7 +48,7 @@ const Recipes = (props) => {
                     items={items}
                     filteredItems={searchedRecipes}
                     setFilteredItems={setSearchedRecipes}
-                    condition={item => unlockedIngredients.indexOf(item) !== -1}
+                    condition={item => unlockedIngredients.indexOf(item) === -1 && unlockedIngredients.filter(ing => ing.parentRecipe === item).length === 0 }
                 />
                 <FilterBar 
                     items={items}
@@ -62,7 +60,7 @@ const Recipes = (props) => {
 
             <div id="recipes-grid" className={`${recipeInfo ? "half" : ""}`}>
                 {viewRecipes.map((name, i) => {
-                    return (unlockedIngredients.indexOf(name) === -1) ?
+                    return ((unlockedIngredients.indexOf(name) === -1) && unlockedIngredients.filter(ing => ing.parentRecipe === name).length === 0) ?
                         // locked
                         <div className="recipe-item locked border4" key={i}>
                             <h1 className="text4">?</h1>
@@ -93,7 +91,7 @@ const Recipes = (props) => {
                     
                     <li>
                         <h4>categories</h4>
-                        <ul>{RECIPES[recipeInfo].category.map((cat, i) => {
+                        <ul>{RAW_RECIPES[recipeInfo].category.map((cat, i) => {
                             return <li key={i}>
                                 {cat}
                             </li>
@@ -102,66 +100,46 @@ const Recipes = (props) => {
 
                     <li>
                         <h4>appliances</h4>
-                        <ul>{RECIPES[recipeInfo].appliance.map((app, i) => {
+                        <ul>{RAW_RECIPES[recipeInfo].appliance.map((app, i) => {
                             return <li key={i}>
                                 {app === undefined ? "counter" : app}
                             </li>
                         })}</ul>
                     </li>
 
-                    {RECIPES[recipeInfo].variants && <li>
+                    {RAW_RECIPES[recipeInfo].variants && <li>
                         <h4>variants</h4>
                         <ul>
-                            {RECIPES[recipeInfo].canExistAlone && <li>{recipeInfo}</li>}
-                            {Object.keys(RECIPES[recipeInfo].variants).map((vari, i) => {
+                            {RAW_RECIPES[recipeInfo].canExistAlone && <li>{recipeInfo}</li>}
+                            {Object.keys(RECIPES).filter(recName => RECIPES[recName].parentRecipe === recipeInfo).filter(name => unlockedIngredients.indexOf(name) !== -1).map((vari, i) => {
                                 return <li key={i}>
-                                    {vari} {recipeInfo}
+                                    {vari}
                                 </li>
                             })}
                         </ul>
                     </li>}
 
-                    {!RECIPES[recipeInfo].variants ? 
-                        <li>
-                            <h4>recipes</h4>
-                            {RECIPES[recipeInfo].ingredientCombos.map((combo, i) => {
-                                return <ul key={i} className="recipe-ingredient-combo-list">
-                                    {RECIPES[recipeInfo].ingredientCombos[i].map((ing, j) => {
-                                        return <li key={j}>{ing}</li>
-                                    })}
-                                </ul>
-                            })}
-                        </li> 
-                    : 
-                        <li>
-                            <h4>recipes</h4>
-                            {RECIPES[recipeInfo].canExistAlone && <>
-                                <ul>
-                                    <h4>plain</h4>
-                                    {RECIPES[recipeInfo].ingredientCombos.map((combo, j) => {
-                                        return <ul key={j} className="recipe-ingredient-combo-list">
-                                            {RECIPES[recipeInfo].ingredientCombos[j].map((ing, k) => {
-                                                return <li key={k}>{ing}</li>
-                                            })}
-                                        </ul>
-                                    })}
-                                </ul>
-                            </>}
 
-                            {Object.keys(RECIPES[recipeInfo].variants).map((vari, i) => {
-                                return <ul key={i}>
-                                    <h4>{vari}</h4>
-                                    {RECIPES[recipeInfo].ingredientCombos.map((combo, j) => {
-                                        return <ul key={j} className="recipe-ingredient-combo-list">
-                                            {[...RECIPES[recipeInfo].ingredientCombos[j], ...RECIPES[recipeInfo].variants[vari]].map((ing, k) => {
-                                                return <li key={k}>{ing}</li>
+                    <li>
+                        <h4>recipes</h4>
+                        
+                        <ul>
+                            {Object.keys(RECIPES).filter((recName => recName === recipeInfo || (RECIPES[recName].parentRecipe === recipeInfo && unlockedIngredients.indexOf(recName) !== -1))).map((recName, u) => 
+                                <li key={u}>
+                                    {<h4>{recName}</h4>}
+                                    {RECIPES[recName].ingredientCombos.map((combo, i) => {
+                                        return <ul key={i} className="recipe-ingredient-combo-list">
+                                            {RECIPES[recName].ingredientCombos[i].map((ing, j) => {
+                                                return <li key={j}>{ing}</li>
                                             })}
                                         </ul>
                                     })}
-                                </ul>
-                            })}
-                        </li>
-                    }
+                                </li>
+                            )}
+                        </ul>
+
+                    </li> 
+                    
 
                 </ul>
             </div>}

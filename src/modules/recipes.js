@@ -1,4 +1,4 @@
-const RECIPES = {
+export const RAW_RECIPES = {
 
 
     // DAIRY
@@ -33,16 +33,15 @@ const RECIPES = {
     },
     "yogurt": {
         "appliance": ["fridge"],
-        "ingredientCombos": [["plain yogurt"], ["milk", "bacteria"]],
+        "ingredientCombos": [["yogurt"], ["milk", "bacteria"]],
         "icon": "",
         "category": ["dairy"],
         "variants": {
-            "plain": [],
             "vanilla": ["vanilla beans"],
             "strawberry": ["strawberry"],
             "blueberry": ["blueberry"]
         },
-        "canExistAlone": false
+        "canExistAlone": true
     },
     "ice cream": {
         "appliance": ["fridge"],
@@ -408,4 +407,53 @@ const RECIPES = {
 
 }
 
-export default RECIPES;
+const compileRecipes = (recipes) => {
+    let newRecipes = {};
+    for (let i = 0; i < Object.keys(recipes).length; i++) {
+        let recipeKey = Object.keys(recipes)[i];
+        let recipeVal = recipes[recipeKey];
+
+        if (!recipeVal.hasOwnProperty("canExistAlone") && !recipeVal.hasOwnProperty("variants")) {
+            // no variants, push to recipes
+            newRecipes[recipeKey] = recipeVal;
+        } else {
+            // recipe has variants
+            if (recipeVal.canExistAlone) {
+                let newVal = {
+                    "appliance": recipeVal.appliance,
+                    "ingredientCombos": recipeVal.ingredientCombos,
+                    "icon": recipeVal.icon,
+                    "category": recipeVal.category
+                }
+
+                newRecipes[recipeKey] = newVal;
+            }
+
+            // variants
+            if (recipeVal.variants) {
+                for (let j = 0; j < Object.keys(recipeVal.variants).length; j++) {
+                    let variantKey = Object.keys(recipeVal.variants)[j];
+                    let variantVal = recipeVal.variants[variantKey];
+
+                    let newVal = {
+                        "appliance": recipeVal.appliance,
+                        "ingredientCombos": recipeVal.ingredientCombos.map(combo => [...combo, ...variantVal]),
+                        "icon": recipeVal.icon,
+                        "category": recipeVal.category,
+                        "parentRecipe": recipeKey
+                    }
+
+                    newRecipes[`${variantKey} ${recipeKey}`] = newVal;
+
+                }
+            }
+
+        }
+
+    }
+
+    return newRecipes;
+}
+
+export const RECIPES = compileRecipes(RAW_RECIPES);
+

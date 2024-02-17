@@ -9,7 +9,7 @@ import SearchBar from "../components/SearchBar.js";
 import FilterBar from "../components/FilterBar.js";
 
 import INGREDIENTS from "../modules/ingredients.js";
-import RECIPES from "../modules/recipes.js";
+import { RECIPES } from "../modules/recipes.js";
 
 
 import { DEFAULT_INGREDIENTS, DEFAULT_APPLIANCES } from "../modules/configs.js";
@@ -64,7 +64,6 @@ const Kitchen = (props) => {
             for (let i = 0; i < recipe.ingredientCombos.length; i++) {
 
                 let combo = recipe.ingredientCombos[i];
-                if (recName === "toast") console.log(combo);
             
                 // check if ingredients include recipe ingredients
                 if (includesAll(sameTileIngredients.map(ing => ing.name), combo)) {
@@ -74,49 +73,11 @@ const Kitchen = (props) => {
             }
         }) 
 
-        let recipeVariantsNames = [];
-        let recipeVariantsIngredients = [];
-
-        for (let i = 0; i < recipeNames.length; i++) {
-
-            let recipeName = recipeNames[i];
-            let combo = ingredientsLists[i];
-            let recipe = RECIPES[recipeName];
-
-
-
-            // check if ingredients include variant ingredients
-            if (recipe.hasOwnProperty("variants")) {
-
-                for (let j = 0; j < Object.keys(recipe.variants).length; j++) {
-                    let variantName = Object.keys(recipe.variants)[j];
-                    let variantIngredients = recipe.variants[variantName];
-
-                    let variantCombo = [...combo, ...variantIngredients];
-
-
-                    if (includesAll(sameTileIngredients.map(ing => ing.name), variantCombo)) {
-                        recipeVariantsNames.push(variantName + " " + recipeName);
-                        recipeVariantsIngredients.push(variantCombo);
-                    }
-                }
-            }
-
-           
-        }
 
         // filter out recipe if it can not exist alone
 
         ingredientsLists.filter((list, i) => !RECIPES[Object.keys(RECIPES)[i]].hasOwnProperty("canExistAlone") ? true : RECIPES[Object.keys(RECIPES)[i]].canExistAlone);
         recipeNames.filter(name => !RECIPES[name].hasOwnProperty("canExistAlone") ? true : RECIPES[name].canExistAlone);
-        
-        // add variants to recipe lists
-        recipeNames.push(...recipeVariantsNames);
-        ingredientsLists.push(...recipeVariantsIngredients);
-
-        
-        
-
         
         // favor most complicated recipe
         let mostComplicatedIngredients;
@@ -267,7 +228,7 @@ const Kitchen = (props) => {
 
             <h1 id="ingredients-list-quantity-label" className="text1">
                 {selectedCategory ? 
-                    (unlockedIngredients.filter(ing => (({...INGREDIENTS, ...RECIPES})[ing] || RECIPES[ing.split(" ").slice(1).join(" ")]).category.indexOf(selectedCategory) !== -1)?.length) 
+                    (unlockedIngredients.filter(ing => ({...INGREDIENTS, ...RECIPES})[ing].category.indexOf(selectedCategory) !== -1)?.length) 
                 : 
                     unlockedIngredients.length}/{selectedCategory ? categoryQuantities[selectedCategory] : Object.keys({...INGREDIENTS, ...RECIPES}).length}
             </h1>
