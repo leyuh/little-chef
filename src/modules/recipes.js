@@ -143,10 +143,14 @@ export const RAW_RECIPES = {
         "category": ["liquids"]
     },
     "lemonade": {
-        "appliance": ["fridge"],
+        "appliance": ["fridge", undefined],
         "ingredientCombos": [["simple syrup", "lemon"]],
         "icon": "",
-        "category": ["liquids"]
+        "category": ["liquids"],
+        "variants": {
+            "strawberry": ["strawberry"],
+        },
+        "canExistAlone": true
     },
     "chocolate": {
         "appliance": ["oven"],
@@ -168,7 +172,7 @@ export const RAW_RECIPES = {
     },
     "latte": {
         "appliance": [undefined],
-        "ingredientCombos": [["coffee", "milk"], ["coffee", "cream"]],
+        "ingredientCombos": [["coffee", "milk"]],
         "icon": "",
         "category": ["liquids"]
     },
